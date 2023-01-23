@@ -1,0 +1,100 @@
+﻿<Window x:Class="Yakout.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Yakout.ViewModels"
+        xmlns:v="clr-namespace:Yakout.Views"
+        xmlns:local="clr-namespace:Yakout"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1100" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
+    <Window.DataContext>
+        <vm:NavigationVM></vm:NavigationVM>
+    </Window.DataContext>
+    <Border  BorderThickness="2" BorderBrush="BlueViolet" Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Button Style="{StaticResource btnCircle}" Grid.Column="1" Click="Button_Click">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="Close" Grid.Column="1" Style="{StaticResource close}"/>
+                </StackPanel >
+            </Button>
+            <Border Grid.Row="1" Background="BlueViolet" >
+                <StackPanel >
+                    <Button Style="{StaticResource btnMainMenu}" Name="btnPOS" 
+                            Command="{Binding NavigatePosCommand}">
+                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="ShoppingCart" Style="{StaticResource faMainMenu}" Margin="40 0 0 0"/>
+                            <TextBlock Text="Point Of Sale" Style="{StaticResource tbMainMenu}" Margin="30 10 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource btnMainMenu}" Name="btnSetUp" Command="{Binding NavigateUsersCommand}">
+                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal" >
+                            <fa:ImageAwesome Icon="Key" Style="{StaticResource faMainMenu}"/>
+                            <TextBlock Text="Set Up" Style="{StaticResource tbMainMenu}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource btnMainMenu}" Name="btnReports" 
+                            Command="{Binding NavigateUsersSelectCommand}">
+                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="PencilSquare" Style="{StaticResource faMainMenu}"/>
+                            <TextBlock Text="Reports" Style="{StaticResource tbMainMenu}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource btnMainMenu}" Name="btnOptions"
+                            Command="{Binding NavigateMainBackGroundCommand}" >
+                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="HandPaperOutline" Style="{StaticResource faMainMenu}"/>
+                            <TextBlock Text="Options" Style="{StaticResource tbMainMenu}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btnLogOut" Style="{StaticResource btnMainMenu}" Margin="5 212 5 0" Click="btnLogOut_Click">
+                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="CircleOutlineNotch" Style="{StaticResource faMainMenu}"/>
+                            <TextBlock Text="Log Out" Style="{StaticResource tbMainMenu}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/image/R.png"/>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <TextBlock Text="Yakout POS" Margin="5 10 5 5" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="1.0.0.1" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Yakout Company" FontSize="15" Foreground="DodgerBlue" FontWeight="Bold" HorizontalAlignment="Center" TextDecorations="Underline"/>
+                </StackPanel>
+            </Grid>
+            <Border Grid.Column="1" Background="BlueViolet">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Canvas>
+                        <Label x:Name="lbl" FontSize="15" Foreground="White" Canvas.Top="10" Canvas.Right="20" Content="{Binding MyTimer}"/>
+                        <TextBlock Text="Point Of Sale" Canvas.Left="250" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 25 0 0"/>
+                        <Ellipse Width="40" Height="40" Fill="DarkViolet" Canvas.Left="150" Canvas.Top="20" StrokeThickness="10"/>
+                        <Ellipse Width="40" Height="40" Fill="DarkViolet" Canvas.Right="230" Canvas.Top="20" StrokeThickness="10"/>
+                    </Canvas>
+                </Grid>
+            </Border>
+            <Rectangle Stroke="BlueViolet" StrokeThickness="3" Grid.Column="0" Grid.Row="0"/>
+            <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1" Grid.Column="1" >
+            </ContentControl>
+            <!--CurrentView-->
+        </Grid>
+    </Border>
+</Window>

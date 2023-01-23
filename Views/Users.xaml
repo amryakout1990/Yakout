@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Yakout.Views.Users"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:local="clr-namespace:Yakout.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource user}"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateUsersSelectCommand}">-->
+
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="select" Style="{StaticResource btnUsers}"
+                    Command="{Binding NavigateUsersSelectCommand}">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="HandPointerOutline"  Style="{StaticResource fa}"/>
+                    <TextBlock Text="Select" Style="{StaticResource btnText}"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="new" Style="{StaticResource btnUsers}" Click="new_Click">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="NewspaperOutline"  Style="{StaticResource fa}"/>
+                    <TextBlock Text="New" Style="{StaticResource btnText}"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="save" Style="{StaticResource btnUsers}" Click="save_Click">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="Save"  Style="{StaticResource fa}"/>
+                    <TextBlock Text="Save" Style="{StaticResource btnText}"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="first" Style="{StaticResource btnUsers}" Click="first_Click">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="FastBackward"  Style="{StaticResource fa}"/>
+                    <TextBlock Text="First" Style="{StaticResource btnText}"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="back" Style="{StaticResource btnUsers}" Click="back_Click">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="Backward"  Style="{StaticResource fa}"/>
+                    <TextBlock Text="Back" Style="{StaticResource btnText}"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="next" Style="{StaticResource btnUsers}" Click="next_Click">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="Forward"  Style="{StaticResource fa}"/>
+                    <TextBlock Text="Next" Style="{StaticResource btnText}"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="last" Style="{StaticResource btnUsers}" Click="last_Click">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="FastForward"  Style="{StaticResource fa}"/>
+                    <TextBlock Text="Last" Style="{StaticResource btnText}"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Label Content="User Name" Style="{StaticResource  labelUsers}"/>
+                <Label Content="Password" Style="{StaticResource  labelUsers}"/>
+                <Label Content="Full Name" Style="{StaticResource  labelUsers}"/>
+                <Label Content="Job Des" Style="{StaticResource  labelUsers}"/>
+                <Label Content="Email" Style="{StaticResource  labelUsers}"/>
+                <Label Content="Phone" Style="{StaticResource  labelUsers}"/>
+
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBox Name="tx1" Style="{StaticResource box}" Text="{Binding Path=UserName,Mode=OneWay}"/>
+                <TextBox Name="tx2" Style="{StaticResource box}" Text="{Binding Path=Password,Mode=OneWay}"/>
+                <TextBox Name="tx3" Style="{StaticResource box}" Text="{Binding Path=FullName,Mode=OneWay }"/>
+                <TextBox Name="tx4" Style="{StaticResource box}" Text="{Binding Path=JobDes,Mode=OneWay}"/>
+                <TextBox Name="tx5" Style="{StaticResource box}" Text="{Binding Path=Email,Mode=OneWay }"/>
+                <TextBox Name="tx6" Style="{StaticResource box}" Text="{Binding Path=Phone,Mode=OneWay }"/>
+            </StackPanel>
+            <Canvas Grid.Column="2">
+                <Button  x:Name="btnBack" Style="{StaticResource btnPages}"
+                         Canvas.Right="5" Canvas.Bottom="5"
+                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateMainBackGroundCommand}">
+                    <StackPanel>
+                        <fa:ImageAwesome Icon="Backward" Style="{StaticResource faPagesBack}"/>
+                        <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>
+                    </StackPanel>
+                </Button>
+            </Canvas>
+        </Grid>
+    </Grid>
+</UserControl>

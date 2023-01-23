@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Yakout.Views.SetUP"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Yakout.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource  user}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <!--<ItemsControl ItemsSource="{Binding UsersCommand}">
+            
+        </ItemsControl>-->
+        
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+
+        </StackPanel>
+        <Button  Margin="10" Style="{StaticResource btnPages}" Grid.Row="0" 
+            Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.UsersCommand}">
+            <StackPanel>
+                <fa:ImageAwesome Icon="User" Style="{StaticResource faPages}"/>
+                <TextBlock Text="Users" Style="{StaticResource tbPages}"/>
+            </StackPanel>
+        </Button>
+        <Button  Margin="10" Style="{StaticResource btnPages}" Grid.Row="1" >
+            <StackPanel>
+                <fa:ImageAwesome Icon="CartArrowDown" Style="{StaticResource faPages}"/>
+                <TextBlock Text="Items" Style="{StaticResource tbPages}"/>
+            </StackPanel>
+        </Button>
+        <Button  Margin="10" Style="{StaticResource btnPages}" Grid.Row="2" >
+            <StackPanel>
+                <fa:ImageAwesome Icon="CodeFork" Style="{StaticResource faPages}"/>
+                <TextBlock Text="Categories" Style="{StaticResource tbPages}"/>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Column="0" Grid.Row="4"  Style="{StaticResource btnPages}" >
+            <StackPanel>
+                <fa:ImageAwesome Icon="CreditCard" Style="{StaticResource faPages}"/>
+                <TextBlock Text="Payments" Style="{StaticResource tbPages}"/>
+            </StackPanel>
+        </Button>
+
+        <Canvas Grid.Column="2" Grid.RowSpan="4">
+            <Button x:Name="btnBack2" Style="{StaticResource btnPages}"
+                     Canvas.Right="0" Canvas.Bottom="0"
+                     Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.MainBackGroundCommand}">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="Backward" Width="30" Style="{StaticResource faPagesBack}"/>
+                    <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>
+                </StackPanel>
+            </Button>
+        </Canvas>
+    </Grid>
+</UserControl>

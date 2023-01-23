@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:vm="clr-namespace:Yakout.ViewModels"
+                    xmlns:view="clr-namespace:Yakout.Views">
+
+
+
+    <DataTemplate DataType="{x:Type vm:OptionsVM}">
+        <view:Options/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:MainBackGroundVM}">
+        <view:MainBackGround/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SetUpVM}">
+        <view:SetUP/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:PosVM}">
+        <view:Pos/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ReportsVM}">
+        <view:Reports/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:UsersVM}">
+        <view:Users/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:UserSelectVM}">
+        <view:UserSelect/>
+    </DataTemplate>
+
+</ResourceDictionary>
