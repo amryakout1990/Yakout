@@ -38,7 +38,7 @@
     <Style x:Key="btnPages" TargetType="Button">
         <Setter Property="Width"  Value="100"/>
         <Setter Property="Height" Value="100"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="10 10 10 0"/>
         <Setter Property="Background" Value="DarkSlateBlue"/>
         <Setter Property="Template">
             <Setter.Value>

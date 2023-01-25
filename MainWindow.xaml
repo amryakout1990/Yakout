@@ -4,14 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:Yakout.ViewModels"
+        xmlns:vm="clr-namespace:Yakout.Views"
         xmlns:v="clr-namespace:Yakout.Views"
-        xmlns:local="clr-namespace:Yakout"
+        xmlns:local="clr-namespace:Yakout.Views" xmlns:viewmodels="clr-namespace:Yakout.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SetUpVM}"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1100" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:NavigationVM></vm:NavigationVM>
-    </Window.DataContext>
+    </Window.DataContext>-->
+    <!--<Window.Resources>
+        <local:Users DataContext="{Binding UsersVM}"/>
+    </Window.Resources>-->
     <Border  BorderThickness="2" BorderBrush="BlueViolet" Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -36,7 +39,7 @@
                             <TextBlock Text="Point Of Sale" Style="{StaticResource tbMainMenu}" Margin="30 10 0 0"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource btnMainMenu}" Name="btnSetUp" Command="{Binding NavigateUsersCommand}">
+                    <Button Style="{StaticResource btnMainMenu}" Name="btnSetUp" Command="{Binding NavigateSetUPCommand}">
                         <StackPanel Style="{StaticResource stack}" Orientation="Horizontal" >
                             <fa:ImageAwesome Icon="Key" Style="{StaticResource faMainMenu}"/>
                             <TextBlock Text="Set Up" Style="{StaticResource tbMainMenu}"/>

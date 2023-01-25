@@ -100,22 +100,22 @@ namespace Yakout.ViewModels
 
         ///SetUp page /////
 
-        private void SetUp(object obj) => CurrentView = new SetUpVM();
+        //private void SetUp(object obj) => CurrentView = new SetUpVM();
 
-        private ICommand _SetUpCommand;
+        //private ICommand _SetUpCommand;
 
-        public ICommand SetUpCommand
-        {
-            get
-            {
-                if (_SetUpCommand == null)
-                {
-                    _SetUpCommand = new RelayCommand(SetUp);
-                }
-                return _SetUpCommand;
-            }
-            set { _SetUpCommand = value; OnPropertyChanged(); }
-        }
+        //public ICommand SetUpCommand
+        //{
+        //    get
+        //    {
+        //        if (_SetUpCommand == null)
+        //        {
+        //            _SetUpCommand = new RelayCommand(SetUp);
+        //        }
+        //        return _SetUpCommand;
+        //    }
+        //    set { _SetUpCommand = value; OnPropertyChanged(); }
+        //}
 
         ///Pos Page///
         private void Pos(object ooo) => CurrentView = new PosVM();

@@ -42,39 +42,11 @@ namespace Yakout.ViewModels
 
             _selectedUserStore.SelectedUser = usersStore;
 
-            //MessageBox.Show("تم التحديث");
-            /// نحتاج الطريقة الاخري مع باراميتر
+            NavigateUsersAfterSelectionCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore,_selectedUserStore)));
 
-            ParameterNavigationService<SelectedUserStore, UsersVM> ParameterNavigationService = new ParameterNavigationService<SelectedUserStore, UsersVM>(navigationStore, (_selectedUserStore) => new UsersVM(_navigationStore, _selectedUserStore));
-
-            NavigateUsersAfterSelectionCommand = new NavigateUsersAfterSelectionCommand<UsersVM>(ParameterNavigationService, _selectedUserStore);
-
-            NavigateUsersCommand2 = new NavigateUsersCommand(_navigationStore,_selectedUserStore);
-
-            /// القيمة المخزنة لم تتغير
-
-            // = new NavigateUsersAfterSelectionCommand(_navigationStore, _selectedUserStore);
-            MainWindow main = new MainWindow();
-            main.DataContext = this;
+            NavigateUsersCommand2 = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
+            
         }
 
-        public UserSelectVM()
-        {
-        }
-
-
-
-        //public ICommand UserSelectDgCommand { get; }
-
-        //public ICollectionView CollectionView { get; set; }
-
-        //public UserSelectVM(SelectedUserStore _SelectedUserStore,INavigationService navigationService)
-        //{
-        //    UserSelectDgCommand = new UserSelectDgCommand(this, _SelectedUserStore,navigationService);
-        //}
-
-        //public UserSelectVM()
-        //{
-        //}
     }
 }

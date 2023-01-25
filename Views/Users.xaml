@@ -84,10 +84,12 @@
                 <TextBox Name="tx5" Style="{StaticResource box}" Text="{Binding Path=Email,Mode=OneWay }"/>
                 <TextBox Name="tx6" Style="{StaticResource box}" Text="{Binding Path=Phone,Mode=OneWay }"/>
             </StackPanel>
+                                     <!--Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateMainBackGroundCommand}">-->
+
             <Canvas Grid.Column="2">
                 <Button  x:Name="btnBack" Style="{StaticResource btnPages}"
                          Canvas.Right="5" Canvas.Bottom="5"
-                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateMainBackGroundCommand}">
+                         Command="{Binding NavigateSetUpCommand}">
                     <StackPanel>
                         <fa:ImageAwesome Icon="Backward" Style="{StaticResource faPagesBack}"/>
                         <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>

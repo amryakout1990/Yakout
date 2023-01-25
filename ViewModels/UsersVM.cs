@@ -26,21 +26,22 @@ namespace Yakout.ViewModels
 
         public  SelectedUserStore _selectedUserStore;
 
-        //public int Id => _selectedUserStore.SelectedUser?.id;
+        public ICommand NavigateSetUpCommand { get; }
 
         private readonly NavigationStore _navigationStore;
-        public ICommand NavigateMainBackGroundCommand { get; }
 
         public UsersVM(NavigationStore navigationStore,SelectedUserStore selectedUserStore)
         {
             _navigationStore = navigationStore;
+
             _selectedUserStore = selectedUserStore;
-            NavigateMainBackGroundCommand = new NavigateCommand<MainBackGroundVM>(new NavigationService<MainBackGroundVM>(navigationStore, () => new MainBackGroundVM()));
 
             NavigateUsersSelectCommand = new NavigateCommand<UserSelectVM>(new NavigationService<UserSelectVM>(navigationStore, () => new UserSelectVM(_navigationStore)));
 
+            NavigateSetUpCommand = new NavigateCommand<SetUpVM>(new NavigationService<SetUpVM>(navigationStore, () => new SetUpVM(_navigationStore)));
+
             _selectedUserStore.SelectedUserChanged += _selectedUserStore_SelectedUserChanged;
-            //show();
+
         }
         public string UserName => _selectedUserStore.SelectedUser?.UserName;
 
@@ -72,35 +73,10 @@ namespace Yakout.ViewModels
 
             base.Dispose();
         }
-        private void show()
-        {
-            MessageBox.Show(Password);
-        }
 
-
-        //DataTable table;
 
         //public UsersVM()
         //{
-        //    table = new DataTable();
-        //    using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
-        //    {
-        //        using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users where id=" + 3 + "", connection))
-        //        {
-        //            table = new DataTable();
-        //            adapter.Fill(table);
-        //            if (table.Rows.Count > 0)
-        //            {
-        //                UserName = table.Rows[0][1].ToString();
-        //                Password = table.Rows[0][2].ToString();
-        //                FullName = table.Rows[0][3].ToString();
-        //                JobDes = table.Rows[0][4].ToString();
-        //                Email = table.Rows[0][5].ToString();
-        //                Phone = table.Rows[0][6].ToString();
-        //            }
-
-        //        }
-        //    }
 
         //}
 

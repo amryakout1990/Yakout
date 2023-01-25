@@ -22,23 +22,11 @@ namespace Yakout.ViewModels
 
         public ICommand NavigateUsersCommand { get; }
 
+        public ICommand NavigateSetUPCommand { get; }
+
         public ICommand NavigatePosCommand { get; }
 
-        private SelectedUserStore _selectedUserStore = new SelectedUserStore();
-
-        private UsersStore _usersStore = new UsersStore()
-        {
-                UserName = "from MainVM",
-                Password = "2",
-                FullName = "3",
-                JobDes = "4",
-                Email = "5",
-                Phone = "6"
-        };
-
-        //public ICommand NavigateUsersSelectCommand { get; }
-
-        //public ICommand NavigateMainBackGroundCommand { get; }
+        public ICommand NavigateMainBackGroundCommand { get; }
 
         public ICommand NavigateUsersAfterSelectionCommand { get; }
 
@@ -46,7 +34,6 @@ namespace Yakout.ViewModels
         {
             _navigationStore = navigationStore;
 
-            _selectedUserStore.SelectedUser = _usersStore;
 
             _navigationStore.CurrentViewModelChanged += _navigationStore_CurrentViewModelChanged;
 
@@ -54,19 +41,10 @@ namespace Yakout.ViewModels
             /// the command take the old value from constructor of the mainVM
             /// then command setting the new value to new usersVM
             ///then making update to the new value by firing the event and onproperty changed
-            
-            NavigateUsersCommand = new NavigateUsersCommand(navigationStore, _selectedUserStore);
 
             NavigatePosCommand = new NavigatePosCommand( navigationStore);
 
-            //NavigateUsersSelectCommand = new NavigateUsersSelectCommand(navigationStore);
-
-            //NavigateUsersAfterSelectionCommand = new NavigateCommand<UserSelectVM>(new NavigationService<UserSelectVM>(navigationStore, () => new UserSelectVM(_navigationStore)));
-
-            //NavigateUsersAfterSelectionCommand = new NavigateUsersAfterSelectionCommand(_navigationStore, _selectedUserStore);
-
-
-            //NavigateMainBackGroundCommand = new NavigateCommand <MainBackGroundVM>(new NavigationService<MainBackGroundVM>(navigationStore,()=>new MainBackGroundVM()));
+            NavigateSetUPCommand = new NavigateCommand<SetUpVM>(new NavigationService<SetUpVM>(navigationStore, () => new SetUpVM(_navigationStore)));
 
             ///تم الاستغناء عن الطرق القديمة لعمل command 
             ///كل واحد لحالة

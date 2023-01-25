@@ -42,14 +42,15 @@
                 <DataGrid.InputBindings>
                     <MouseBinding
                         Gesture="LeftDoubleClick"
-                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateUsersAfterSelectionCommand}"/>
+                        Command="{Binding NavigateUsersAfterSelectionCommand}"/>
                 </DataGrid.InputBindings>
             </DataGrid>
                                <!--Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateUsersAfterSelectionCommand}">-->
 
 
             <Button Grid.Column="1" VerticalAlignment="Bottom"  x:Name="btnBack"  Style="{StaticResource btnPages}" Width="75" Height="75" 
-                               Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateUsersCommand2}">
+                    Command="{Binding NavigateUsersCommand2}">
+
                 <StackPanel>
                     <fa:ImageAwesome Icon="Backward" Style="{StaticResource faPagesBack}"/>
                     <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>

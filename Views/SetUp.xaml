@@ -10,55 +10,43 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
 
-        </Grid.RowDefinitions>
-
-        <!--<ItemsControl ItemsSource="{Binding UsersCommand}">
-            
-        </ItemsControl>-->
-        
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+        <StackPanel>
+            <Button Style="{StaticResource btnPages}" 
+                 Command="{Binding NavigateUsersCommand}">
+                <StackPanel>
+                    <fa:ImageAwesome Icon="User" Style="{StaticResource faPages}"/>
+                    <TextBlock Text="Users" Style="{StaticResource tbPages}"/>
+                </StackPanel>
+            </Button>
+            <Button  Style="{StaticResource btnPages}"  >
+                <StackPanel>
+                    <fa:ImageAwesome Icon="CartArrowDown" Style="{StaticResource faPages}"/>
+                    <TextBlock Text="Items" Style="{StaticResource tbPages}"/>
+                </StackPanel>
+            </Button>
+            <Button   Style="{StaticResource btnPages}"  >
+                <StackPanel>
+                    <fa:ImageAwesome Icon="CodeFork" Style="{StaticResource faPages}"/>
+                    <TextBlock Text="Categories" Style="{StaticResource tbPages}"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource btnPages}" >
+                <StackPanel>
+                    <fa:ImageAwesome Icon="CreditCard" Style="{StaticResource faPages}"/>
+                    <TextBlock Text="Payments" Style="{StaticResource tbPages}"/>
+                </StackPanel>
+            </Button>
 
         </StackPanel>
-        <Button  Margin="10" Style="{StaticResource btnPages}" Grid.Row="0" 
-            Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.UsersCommand}">
-            <StackPanel>
-                <fa:ImageAwesome Icon="User" Style="{StaticResource faPages}"/>
-                <TextBlock Text="Users" Style="{StaticResource tbPages}"/>
-            </StackPanel>
-        </Button>
-        <Button  Margin="10" Style="{StaticResource btnPages}" Grid.Row="1" >
-            <StackPanel>
-                <fa:ImageAwesome Icon="CartArrowDown" Style="{StaticResource faPages}"/>
-                <TextBlock Text="Items" Style="{StaticResource tbPages}"/>
-            </StackPanel>
-        </Button>
-        <Button  Margin="10" Style="{StaticResource btnPages}" Grid.Row="2" >
-            <StackPanel>
-                <fa:ImageAwesome Icon="CodeFork" Style="{StaticResource faPages}"/>
-                <TextBlock Text="Categories" Style="{StaticResource tbPages}"/>
-            </StackPanel>
-        </Button>
 
-        <Button Grid.Column="0" Grid.Row="4"  Style="{StaticResource btnPages}" >
-            <StackPanel>
-                <fa:ImageAwesome Icon="CreditCard" Style="{StaticResource faPages}"/>
-                <TextBlock Text="Payments" Style="{StaticResource tbPages}"/>
-            </StackPanel>
-        </Button>
-
-        <Canvas Grid.Column="2" Grid.RowSpan="4">
+        <Canvas Grid.Column="1">
             <Button x:Name="btnBack2" Style="{StaticResource btnPages}"
+                    Margin="10"
                      Canvas.Right="0" Canvas.Bottom="0"
-                     Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.MainBackGroundCommand}">
+                     Command="{Binding NavigateMainBackGroundCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="Backward" Width="30" Style="{StaticResource faPagesBack}"/>
                     <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>

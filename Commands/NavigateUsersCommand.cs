@@ -15,9 +15,9 @@ namespace Yakout.Commands
 
         private readonly SelectedUserStore _selectedUserStore;
 
-        public NavigateUsersCommand(NavigationStore navigationStore, SelectedUserStore selectedUserStore)
+        public NavigateUsersCommand(SelectedUserStore selectedUserStore)
         {
-            _navigationStore = navigationStore;
+            //_navigationStore = navigationStore;
             _selectedUserStore = selectedUserStore;
         }
 
@@ -25,5 +25,7 @@ namespace Yakout.Commands
         {
             _navigationStore.CurrentViewModel = new UsersVM(_navigationStore,_selectedUserStore);
         }
+        
+        //NavigationStore navigationStore
     }
 }
