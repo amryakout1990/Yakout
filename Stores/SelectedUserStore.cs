@@ -14,10 +14,13 @@ namespace Yakout.Stores
         public UsersStore SelectedUser
         {
             get {
+                if (_SelectedUser==null)
+                {
+                    _SelectedUser = new UsersStore();
+                }
                 return _SelectedUser; 
                 }
             set {
-                   
                    _SelectedUser = value;
                    OnSelectedUserChanged();
                 }

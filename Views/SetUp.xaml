@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yakout.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource  user}">
+             d:DesignHeight="650" d:DesignWidth="900" Style="{StaticResource  user}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -18,25 +18,25 @@
                  Command="{Binding NavigateUsersCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="User" Style="{StaticResource faPages}"/>
-                    <TextBlock Text="Users" Style="{StaticResource tbPages}"/>
+                    <TextBlock Text="Users" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
             <Button  Style="{StaticResource btnPages}"  >
                 <StackPanel>
                     <fa:ImageAwesome Icon="CartArrowDown" Style="{StaticResource faPages}"/>
-                    <TextBlock Text="Items" Style="{StaticResource tbPages}"/>
+                    <TextBlock Text="Items" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
             <Button   Style="{StaticResource btnPages}"  >
                 <StackPanel>
                     <fa:ImageAwesome Icon="CodeFork" Style="{StaticResource faPages}"/>
-                    <TextBlock Text="Categories" Style="{StaticResource tbPages}"/>
+                    <TextBlock Text="Categories" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource btnPages}" >
                 <StackPanel>
                     <fa:ImageAwesome Icon="CreditCard" Style="{StaticResource faPages}"/>
-                    <TextBlock Text="Payments" Style="{StaticResource tbPages}"/>
+                    <TextBlock Text="Payments" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
 

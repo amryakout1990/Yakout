@@ -71,6 +71,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\NavigateUsersAfterSelectionCommand.cs" />
+    <Compile Include="Commands\UsersButtonsCommand.cs" />
+    <Compile Include="Commands\UsersSave.cs" />
     <Compile Include="Utilities\NavigateCommand.cs" />
     <Compile Include="Commands\NavigateMainBackGroundCommand.cs" />
     <Compile Include="Commands\NavigatePosCommand.cs" />

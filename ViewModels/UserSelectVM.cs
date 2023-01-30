@@ -11,16 +11,18 @@ using System.ComponentModel;
 using Yakout.Utilities;
 using System.Windows;
 using Yakout.Views;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Yakout.ViewModels
 {
     class UserSelectVM : Utilities.ViewModelBase
     {
-        
+        private DataTable table_users;
 
         private readonly NavigationStore _navigationStore;
 
-        private  SelectedUserStore _selectedUserStore = new SelectedUserStore();
+        private  SelectedUserStore SelectedUserStore ;
 
         public ICommand NavigateUsersAfterSelectionCommand { get; }
 
@@ -29,6 +31,16 @@ namespace Yakout.ViewModels
         public UserSelectVM(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
+
+            using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users", connection))
+                {
+                    table_users = new DataTable();
+                    adapter.Fill(table_users);
+                }
+            }
+
 
             UsersStore usersStore = new UsersStore()
             {
@@ -40,11 +52,11 @@ namespace Yakout.ViewModels
                 Phone = "6"
             };
 
-            _selectedUserStore.SelectedUser = usersStore;
+            //_selectedUserStore.SelectedUser = usersStore;
 
-            NavigateUsersAfterSelectionCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore,_selectedUserStore)));
+            //NavigateUsersAfterSelectionCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore,_selectedUserStore)));
 
-            NavigateUsersCommand2 = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
+            //NavigateUsersCommand2 = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
             
         }
 

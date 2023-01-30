@@ -35,18 +35,6 @@ namespace Yakout.Views
         public Users()
         {
             InitializeComponent();
-            Loaded += Users_Loaded;
-            //initializing the store when begin user view.cs with userVM
-            //_selectedUserStore = new UserStore();
-            //DataContext = new UsersVM(_selectedUserStore);
-            //DataContext = new UsersVM();
-
-        }
-
-        private void Users_Loaded(object sender, RoutedEventArgs e)
-        {
-            index = 1;
-            //getData(index);
         }
 
         private void save_Click(object sender, RoutedEventArgs e)
@@ -85,7 +73,7 @@ namespace Yakout.Views
                 }
                 else
                 {
-                    if (index==0)
+                    if (index == 0)
                     {
                         using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
                         {
@@ -121,25 +109,44 @@ namespace Yakout.Views
             }
 
         }
+        string New_id;
 
         private void inOrUpdate(SqlConnection connection, int id)
         {
+            index = 0;
             using (command = new SqlCommand("", connection))
             {
-                command.CommandText = "insert into Users values(@1,@2,@3,@4,@5,@6,@7)";
-                command.Parameters.Clear();
-                command.Parameters.Add("@1", SqlDbType.Int).Value = id;
-                command.Parameters.Add("@2", SqlDbType.NVarChar).Value = tx1.Text;
-                command.Parameters.Add("@3", SqlDbType.NVarChar).Value = tx2.Text;
-                command.Parameters.Add("@4", SqlDbType.NVarChar).Value = tx3.Text;
-                command.Parameters.Add("@5", SqlDbType.NVarChar).Value = tx4.Text;
-                command.Parameters.Add("@6", SqlDbType.NVarChar).Value = tx5.Text;
-                command.Parameters.Add("@7", SqlDbType.NVarChar).Value = tx6.Text;
-                connection.Open();
-                command.ExecuteNonQuery();
-                MessageBox.Show("Saved Successfuly");
-                clearAll();
+                if (index == 0)
+                {
+                    command.CommandText = "insert into Users values(@1,@2,@3,@4,@5,@6,@7)";
+                    command.Parameters.Clear();
+                    //command.Parameters.Add("@1", SqlDbType.Int).Value = id;
+                    //command.Parameters.Add("@2", SqlDbType.NVarChar).Value = UserName;
+                    //command.Parameters.Add("@3", SqlDbType.NVarChar).Value = Password;
+                    //command.Parameters.Add("@4", SqlDbType.NVarChar).Value = FullName;
+                    //command.Parameters.Add("@5", SqlDbType.NVarChar).Value = JobDes;
+                    //command.Parameters.Add("@6", SqlDbType.NVarChar).Value = Email;
+                    //command.Parameters.Add("@7", SqlDbType.NVarChar).Value = Phone;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Saved Successfuly");
+                }
+                else
+                {
+                    command.CommandText = "update Users set userName = @2 , password =@3 , fullName = @4 , jobDes = @5 , email = @6 , phone = @7 where id = " + Convert.ToInt32(New_id) + "";
+                    command.Parameters.Clear();
+                    command.Parameters.Add("@2", SqlDbType.NVarChar).Value = tx1.Text;
+                    command.Parameters.Add("@3", SqlDbType.NVarChar).Value = tx2.Text;
+                    command.Parameters.Add("@4", SqlDbType.NVarChar).Value = tx3.Text;
+                    command.Parameters.Add("@5", SqlDbType.NVarChar).Value = tx4.Text;
+                    command.Parameters.Add("@6", SqlDbType.NVarChar).Value = tx5.Text;
+                    command.Parameters.Add("@7", SqlDbType.NVarChar).Value = tx6.Text;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("updated Successfuly");
+                }
             }
+
         }
 
         private void getData(int _index)
@@ -147,7 +154,7 @@ namespace Yakout.Views
             table = new DataTable();
             using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
             {
-                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users where id="+_index+"",connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users where id=" + _index + "", connection))
                 {
                     table = new DataTable();
                     adapter.Fill(table);
@@ -165,61 +172,5 @@ namespace Yakout.Views
             }
         }
 
-        private void clearAll()
-        {
-            tx1.Text = "";
-            tx2.Text = "";
-            tx3.Text = "";
-            tx4.Text = "";
-            tx5.Text = "";
-            tx6.Text = "";
-
-        }
-
-        private void new_Click(object sender, RoutedEventArgs e)
-        {
-            clearAll();
-            index = 0;
-        }
-
-        private void first_Click(object sender, RoutedEventArgs e)
-        {
-            index = 1;
-            getData(index);
-        }
-
-        private void back_Click(object sender, RoutedEventArgs e)
-        {
-            if (index > 1)
-            {
-                index--;
-                getData(index);
-            }
-        }
-
-        private void next_Click(object sender, RoutedEventArgs e)
-        {
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users", Models.connectionString.cs))
-            {
-                table = new DataTable();
-                adapter.Fill(table);
-                if (index < table.Rows.Count &&index>0)
-                {
-                    index++;
-                    getData(index);
-                }
-            }
-        }
-
-        private void last_Click(object sender, RoutedEventArgs e)
-        {
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users",Models.connectionString.cs))
-            {
-                table = new DataTable();
-                adapter.Fill(table);
-                index = table.Rows.Count;
-                getData(index);
-            }
-        }
     }
 }

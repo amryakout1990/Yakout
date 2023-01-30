@@ -38,15 +38,15 @@ namespace Yakout.Views
 
         private void UserSelect_Loaded(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection connection=new SqlConnection(Models.connectionString.cs))
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users", connection))
-                {
-                    table = new DataTable();
-                    adapter.Fill(table);
-                    gridUserSelect.ItemsSource= table.AsDataView();
-                }
-            }
+            //using (SqlConnection connection=new SqlConnection(Models.connectionString.cs))
+            //{
+            //    using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users", connection))
+            //    {
+            //        table = new DataTable();
+            //        adapter.Fill(table);
+            //        gridUserSelect.ItemsSource= table.AsDataView();
+            //    }
+            //}
         }
 
         private void tb_TextChanged(object sender, TextChangedEventArgs e)

@@ -57,12 +57,12 @@ namespace Yakout.ViewModels
                     {
                         UsersStore _usersStore = new UsersStore()
                         {
-                            UserName = "from SetUpVM",
-                            Password = "2",
-                            FullName = "3",
-                            JobDes = "4",
-                            Email = "5",
-                            Phone = "6"
+                            UserName = "",
+                            Password = "",
+                            FullName = "",
+                            JobDes = "",
+                            Email = "",
+                            Phone = ""
                         };
 
                         _selectedUserStore.SelectedUser = _usersStore;

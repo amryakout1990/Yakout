@@ -8,7 +8,7 @@
         xmlns:v="clr-namespace:Yakout.Views"
         xmlns:local="clr-namespace:Yakout.Views" xmlns:viewmodels="clr-namespace:Yakout.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SetUpVM}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1100" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
+        Title="MainWindow" Height="780" Width="1200" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
     <!--<Window.DataContext>
         <vm:NavigationVM></vm:NavigationVM>
     </Window.DataContext>-->
@@ -95,7 +95,9 @@
                 </Grid>
             </Border>
             <Rectangle Stroke="BlueViolet" StrokeThickness="3" Grid.Column="0" Grid.Row="0"/>
-            <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1" Grid.Column="1" >
+            <ContentControl Content="{Binding CurrentViewModel}"
+                            Width="900" Height="650"
+                            Grid.Row="1" Grid.Column="1" >
             </ContentControl>
             <!--CurrentView-->
         </Grid>

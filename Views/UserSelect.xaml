@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Yakout.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource user}">
+             d:DesignHeight="650" d:DesignWidth="900" Style="{StaticResource user}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -22,14 +22,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <!--ItemsSource="{Binding}"
-                      IsSynchronizedWithCurrentItem="True"
-                      SelectedItem="{Binding SelectedUser}"-->
             <DataGrid Name="gridUserSelect" RowStyle="{DynamicResource DataGridRowStyle1}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                       CellStyle="{DynamicResource DataGridCellStyle1}" 
                       Style="{StaticResource myGrid}"
-                      SelectedItem="{Binding SelectedUserStore}"
+                      ItemsSource="{Binding table_users}"
                       >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="User Name" Binding="{Binding userName}"/>
@@ -40,15 +37,12 @@
                     <DataGridTextColumn Header="Phone" Binding="{Binding phone}"/>
                 </DataGrid.Columns>
                 <DataGrid.InputBindings>
-                    <MouseBinding
-                        Gesture="LeftDoubleClick"
+                    <MouseBinding Gesture="LeftDoubleClick"
                         Command="{Binding NavigateUsersAfterSelectionCommand}"/>
                 </DataGrid.InputBindings>
             </DataGrid>
-                               <!--Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateUsersAfterSelectionCommand}">-->
-
-
-            <Button Grid.Column="1" VerticalAlignment="Bottom"  x:Name="btnBack"  Style="{StaticResource btnPages}" Width="75" Height="75" 
+            <Button Grid.Column="1" VerticalAlignment="Bottom"  x:Name="btnBack"  
+                    Style="{StaticResource btnPages}" Width="75" Height="75" 
                     Command="{Binding NavigateUsersCommand2}">
 
                 <StackPanel>

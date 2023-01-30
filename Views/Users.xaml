@@ -6,7 +6,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:Yakout.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource user}"
+             d:DesignHeight="650" d:DesignWidth="900" Style="{StaticResource user}"
              >
     <Grid>
         <Grid.RowDefinitions>
@@ -23,37 +23,43 @@
                     <TextBlock Text="Select" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="new" Style="{StaticResource btnUsers}" Click="new_Click">
+            <Button x:Name="new" Style="{StaticResource btnUsers}" 
+                    Command="{Binding UsersNewButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="NewspaperOutline"  Style="{StaticResource fa}"/>
                     <TextBlock Text="New" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="save" Style="{StaticResource btnUsers}" Click="save_Click">
+            <Button x:Name="save" Style="{StaticResource btnUsers}"
+                    Command="{Binding UsersSaveButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="Save"  Style="{StaticResource fa}"/>
                     <TextBlock Text="Save" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="first" Style="{StaticResource btnUsers}" Click="first_Click">
+            <Button x:Name="first" Style="{StaticResource btnUsers}" 
+                    Command="{Binding UsersFirstButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="FastBackward"  Style="{StaticResource fa}"/>
                     <TextBlock Text="First" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="back" Style="{StaticResource btnUsers}" Click="back_Click">
+            <Button x:Name="back" Style="{StaticResource btnUsers}" 
+                    Command="{Binding UsersBackButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="Backward"  Style="{StaticResource fa}"/>
                     <TextBlock Text="Back" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="next" Style="{StaticResource btnUsers}" Click="next_Click">
+            <Button x:Name="next" Style="{StaticResource btnUsers}" 
+                    Command="{Binding UsersNextButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="Forward"  Style="{StaticResource fa}"/>
                     <TextBlock Text="Next" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="last" Style="{StaticResource btnUsers}" Click="last_Click">
+            <Button x:Name="last" Style="{StaticResource btnUsers}" 
+                    Command="{Binding UsersLastButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="FastForward"  Style="{StaticResource fa}"/>
                     <TextBlock Text="Last" Style="{StaticResource btnText}"/>
@@ -74,21 +80,26 @@
                 <Label Content="Job Des" Style="{StaticResource  labelUsers}"/>
                 <Label Content="Email" Style="{StaticResource  labelUsers}"/>
                 <Label Content="Phone" Style="{StaticResource  labelUsers}"/>
+                <!--<TextBox Name="tx1" Style="{StaticResource box}" Text="{Binding Path=UserName,Mode=TwoWay}"/>
+                <TextBox Name="tx2" Style="{StaticResource box}" Text="{Binding Path=Password,Mode=TwoWay}"/>
+                <TextBox Name="tx3" Style="{StaticResource box}" Text="{Binding Path=FullName,Mode=TwoWay }"/>
+                <TextBox Name="tx4" Style="{StaticResource box}" Text="{Binding Path=JobDes,Mode=TwoWay}"/>
+                <TextBox Name="tx5" Style="{StaticResource box}" Text="{Binding Path=Email,Mode=TwoWay}"/>
+                <TextBox Name="tx6" Style="{StaticResource box}" Text="{Binding Path=Phone,Mode=TwoWay }"/>-->
 
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <TextBox Name="tx1" Style="{StaticResource box}" Text="{Binding Path=UserName,Mode=OneWay}"/>
-                <TextBox Name="tx2" Style="{StaticResource box}" Text="{Binding Path=Password,Mode=OneWay}"/>
-                <TextBox Name="tx3" Style="{StaticResource box}" Text="{Binding Path=FullName,Mode=OneWay }"/>
-                <TextBox Name="tx4" Style="{StaticResource box}" Text="{Binding Path=JobDes,Mode=OneWay}"/>
-                <TextBox Name="tx5" Style="{StaticResource box}" Text="{Binding Path=Email,Mode=OneWay }"/>
-                <TextBox Name="tx6" Style="{StaticResource box}" Text="{Binding Path=Phone,Mode=OneWay }"/>
+                <TextBox Name="tx1" Style="{StaticResource box}" Text="{Binding UserName}"/>
+                <TextBox Name="tx2" Style="{StaticResource box}" Text="{Binding Password}"/>
+                <TextBox Name="tx3" Style="{StaticResource box}" Text="{Binding FullName}"/>
+                <TextBox Name="tx4" Style="{StaticResource box}" Text="{Binding JobDes}"/>
+                <TextBox Name="tx5" Style="{StaticResource box}" Text="{Binding Email}"/>
+                <TextBox Name="tx6" Style="{StaticResource box}" Text="{Binding Phone}"/>
             </StackPanel>
-                                     <!--Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateMainBackGroundCommand}">-->
 
             <Canvas Grid.Column="2">
                 <Button  x:Name="btnBack" Style="{StaticResource btnPages}"
-                         Canvas.Right="5" Canvas.Bottom="5"
+                         Canvas.Right="0" Canvas.Bottom="10"
                          Command="{Binding NavigateSetUpCommand}">
                     <StackPanel>
                         <fa:ImageAwesome Icon="Backward" Style="{StaticResource faPagesBack}"/>

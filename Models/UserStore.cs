@@ -10,17 +10,46 @@ namespace Yakout.Models
     {
         public int id { get; }
 
-        public string UserName { get; set; }
+        private string _UserName;
+        public string UserName
+        {
+            get { return _UserName; }
+            set { _UserName = value; }
+        }
+        private string _Password;
+        public string Password
+        {
+            get { return _Password; }
+            set { _Password = value; }
+        }
+        private string _FullName;
+        public string FullName
+        {
+            get { return _FullName; }
+            set { _FullName = value; }
+        }
 
-        public string Password { get; set; }
+        private string _JobDes;
+        public string JobDes
+        {
+            get { return _JobDes; }
+            set { _JobDes = value; }
+        }
+        private string _Email;
 
-        public string FullName { get; set; }
+        public string Email
+        {
+            get { return _Email; }
+            set { _Email = value; }
+        }
+        private string _Phone;
 
-        public string JobDes { get; set; }
+        public string Phone
+        {
+            get { return _Phone; }
+            set { _Phone = value; }
+        }
 
-        public string Email { get; set; }
-
-        public string Phone { get; set; }
 
 
     }
