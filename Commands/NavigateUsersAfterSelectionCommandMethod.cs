@@ -9,20 +9,26 @@ using Yakout.Utilities;
 
 namespace Yakout.Commands
 {
-      class NavigateUsersAfterSelectionCommandMethod<Tparameter> : ICommand where Tparameter:class
+      class NavigateUsersAfterSelectionCommandMethod<Tparameter, TViewModel> : ICommand 
+        where Tparameter:class where TViewModel : Utilities.ViewModelBase
     {
         private readonly Action<Tparameter> _execute;
 
+        //private readonly Func<TViewModel> _createViewModel;
+
+        private readonly NavigationService<TViewModel> _navigationService;
+
         private readonly Predicate<object> _canExecute;
 
-        public NavigateUsersAfterSelectionCommandMethod(Action<Tparameter> execute)
-       : this(execute, null)
+        public NavigateUsersAfterSelectionCommandMethod(Action<Tparameter> execute, NavigationService<TViewModel> navigationService)
+       : this(execute, navigationService, null)
         {
         }
 
-        public NavigateUsersAfterSelectionCommandMethod(Action<Tparameter> execute, Predicate<object> canExecute)
+        public NavigateUsersAfterSelectionCommandMethod(Action<Tparameter> execute, NavigationService<TViewModel> navigationService, Predicate<object> canExecute)
         {
             _execute = execute;
+            _navigationService = navigationService;
             _canExecute = canExecute;
         }
         public bool CanExecute(object parameter)
@@ -47,6 +53,7 @@ namespace Yakout.Commands
         public void Execute(object parameter)
         {        
             _execute((Tparameter)parameter);
+            _navigationService.Navigate();
         }
     }
 

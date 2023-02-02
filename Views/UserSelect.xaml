@@ -39,7 +39,7 @@
                 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding SelectedUserStoreChanged}"
+                        <i:InvokeCommandAction Command="{Binding NavigateUsersAfterSelectionCommandMethod}"
                                                CommandParameter="{Binding ElementName=gridUserSelect, Path=SelectedItem}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
@@ -52,7 +52,7 @@
             </DataGrid>
             <Button Grid.Column="1" VerticalAlignment="Bottom"  x:Name="btnBack"  
                     Style="{StaticResource btnPages}" Width="75" Height="75" 
-                    Command="{Binding SelectedUserStoreChanged}">
+                    Command="{Binding NavigateUsersCommandBack}">
 
                 <StackPanel>
                     <fa:ImageAwesome Icon="Backward" Style="{StaticResource faPagesBack}"/>

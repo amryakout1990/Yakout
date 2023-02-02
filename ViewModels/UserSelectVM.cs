@@ -20,7 +20,9 @@ namespace Yakout.ViewModels
     {
         private  NavigationStore _navigationStore;
 
-        public NavigateUsersAfterSelectionCommandMethod<object> SelectedUserStoreChanged { get; private set; }
+        public NavigateUsersAfterSelectionCommandMethod<object, UsersVM> NavigateUsersAfterSelectionCommandMethod { get; }
+
+        public ICommand UsersFirstButtonCommand => new UsersButtonsCommand(getDataFirst);
 
         private DataTable _table_users;
 
@@ -40,9 +42,9 @@ namespace Yakout.ViewModels
 
         private readonly SelectedUserStore _selectedUserStore = new SelectedUserStore();
 
-        public ICommand NavigateUsersAfterSelectionCommand;
+        public ICommand NavigateUsersAfterSelectionCommand { get; private set; }
 
-        public ICommand NavigateUsersCommandBack { get; }
+        public ICommand NavigateUsersCommandBack { get; private set; }
 
         public UserSelectVM(NavigationStore navigationStore)
         {
@@ -56,64 +58,58 @@ namespace Yakout.ViewModels
                     adapter.Fill(table_users);
                 }
             }
-            //if (myUser.Rows.Count > 0)
-            //{
-            //    _selectedUserStore.SelectedUser = getDataRow(myUser);
-            //}
-            //else
-            //{
 
-            //}
+            NavigateUsersCommandBack = new NavigateUsersAfterSelectionCommandMethod<object, UsersVM>((_selectedUserStore) => { getDataFirst(_selectedUserStore); }, new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
 
-            UsersStore usersStore1 = new UsersStore()
-            {
-
-                UserName = "gg",
-                Password = "gg",
-                FullName = "gg",
-                JobDes = "ggg",
-                Email = "gg",
-                Phone = "gg"
-            };
-
-            _selectedUserStore.SelectedUser = usersStore1;
-
-            NavigateUsersAfterSelectionCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
-
-            NavigateUsersCommandBack = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
-           
-            SelectedUserStoreChanged = new NavigateUsersAfterSelectionCommandMethod<object>((obj) => { OnItemSelectionChanged(obj); });
-
-
+            NavigateUsersAfterSelectionCommandMethod = new NavigateUsersAfterSelectionCommandMethod<object, UsersVM>((_selectedUserStore) => { OnItemSelectionChanged(_selectedUserStore); }, new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
         }
 
         private void OnItemSelectionChanged(object obj)
         {
-                MessageBox.Show("Test1");
             if (obj is DataRowView _obj)
             {
-                MessageBox.Show("Test2");
-                SelectedUserStore _selectedUserStore = new SelectedUserStore();
-                _selectedUserStore.SelectedUser = getDataRow(_obj);
-                MessageBox.Show(_selectedUserStore.SelectedUser.UserName);
-                NavigateUsersAfterSelectionCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(_navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
+                UsersStore usersStore = new UsersStore()
+                {
+                    UserName = _obj[1].ToString(),
+                    Password = _obj[2].ToString(),
+                    FullName = _obj[3].ToString(),
+                    JobDes = _obj[4].ToString(),
+                    Email = _obj[5].ToString(),
+                    Phone = _obj[6].ToString()
+                };
+                _selectedUserStore.SelectedUser = usersStore;
             }
 
         }
 
-        private UsersStore getDataRow(DataRowView dataRow)
+        private void getDataFirst(object ooo)
         {
-            UsersStore usersStore = new UsersStore()
+            _table_users = new DataTable();
+            using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
             {
-                
-                UserName = dataRow[1].ToString(),
-                Password = dataRow[2].ToString(),
-                FullName = dataRow[3].ToString(),
-                JobDes = dataRow[4].ToString(),
-                Email = dataRow[5].ToString(),
-                Phone = dataRow[6].ToString()
-            };
-            return usersStore;
+                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users where id=" + 1 + "", connection))
+                {
+                    _table_users = new DataTable();
+                    adapter.Fill(_table_users);
+                    if (_table_users.Rows.Count > 0)
+                    {
+                        UsersStore usersStore = new UsersStore()
+                        {
+                            UserName = _table_users.Rows[0][1].ToString(),
+                            Password = _table_users.Rows[0][2].ToString(),
+                            FullName = _table_users.Rows[0][3].ToString(),
+                            JobDes = _table_users.Rows[0][4].ToString(),
+                            Email = _table_users.Rows[0][5].ToString(),
+                            Phone = _table_users.Rows[0][6].ToString()
+                        };
+                        _selectedUserStore.SelectedUser = usersStore;
+
+                    }
+
+                }
+            }
         }
+
+
     }
 }

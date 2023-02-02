@@ -159,7 +159,7 @@ namespace Yakout.ViewModels
         }
         private void getDataSave(object ooo)
         {
-            if (index == 0)
+            if (index != 0)
             {
                 using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
                 {
@@ -201,6 +201,8 @@ namespace Yakout.ViewModels
             {
                 if (index==0)
                 {
+                    using (command = new SqlCommand("", connection))
+                    {
                     command.CommandText = "insert into Users values(@1,@2,@3,@4,@5,@6,@7)";
                     command.Parameters.Clear();
                     command.Parameters.Add("@1", SqlDbType.Int).Value = id;
@@ -213,9 +215,12 @@ namespace Yakout.ViewModels
                     connection.Open();
                     command.ExecuteNonQuery();
                     MessageBox.Show("Saved Successfuly");
+                    }
                 }
                 else
                 {
+                    using (command = new SqlCommand("", connection))
+                    {
                     command.CommandText = "update Users set userName = @2 , password =@3 , fullName = @4 , jobDes = @5 , email = @6 , phone = @7 where id = " +Convert.ToInt32(New_id)+"";
                     command.Parameters.Clear();
                     command.Parameters.Add("@2", SqlDbType.NVarChar).Value = UserName;
@@ -228,6 +233,9 @@ namespace Yakout.ViewModels
                     command.ExecuteNonQuery();
                     MessageBox.Show("updated Successfuly");
                     MessageBox.Show(UserName);
+                    MessageBox.Show(New_id);
+                    }
+
                 }
             }
         }
