@@ -124,7 +124,7 @@ namespace Yakout.ViewModels
 
         public UsersVM(NavigationStore navigationStore,SelectedUserStore selectedUserStore)
         {
-            index = 1;
+            //index = 1;
 
             _navigationStore = navigationStore;
             _selectedUserStore = selectedUserStore;
@@ -139,6 +139,7 @@ namespace Yakout.ViewModels
             NavigateUsersSelectCommand = new NavigateCommand<UserSelectVM>(new NavigationService<UserSelectVM>(navigationStore, () => new UserSelectVM(_navigationStore)));
 
             _selectedUserStore.SelectedUserChanged += _selectedUserStore_SelectedUserChanged;
+            
         }
 
         private void _selectedUserStore_SelectedUserChanged()
@@ -221,7 +222,7 @@ namespace Yakout.ViewModels
                 {
                     using (command = new SqlCommand("", connection))
                     {
-                    command.CommandText = "update Users set userName = @2 , password =@3 , fullName = @4 , jobDes = @5 , email = @6 , phone = @7 where id = " +Convert.ToInt32(New_id)+"";
+                    command.CommandText = "update Users set userName = @2 , password =@3 , fullName = @4 , jobDes = @5 , email = @6 , phone = @7 where id = " +Convert.ToInt32(index) +"";
                     command.Parameters.Clear();
                     command.Parameters.Add("@2", SqlDbType.NVarChar).Value = UserName;
                     command.Parameters.Add("@3", SqlDbType.NVarChar).Value = Password;
@@ -233,7 +234,7 @@ namespace Yakout.ViewModels
                     command.ExecuteNonQuery();
                     MessageBox.Show("updated Successfuly");
                     MessageBox.Show(UserName);
-                    MessageBox.Show(New_id);
+                    MessageBox.Show(index+"");
                     }
 
                 }

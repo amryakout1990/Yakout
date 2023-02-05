@@ -40,7 +40,26 @@ namespace Yakout.ViewModels
             set { _myUser = value; OnPropertyChanged(); }
         }
 
-        private readonly SelectedUserStore _selectedUserStore = new SelectedUserStore();
+        //private readonly SelectedUserStore _selectedUserStore = new SelectedUserStore();
+
+        private SelectedUserStore selectedUserStore;
+
+        public SelectedUserStore _selectedUserStore
+        {
+            get
+            {
+                if (selectedUserStore == null)
+                {
+                    selectedUserStore = new SelectedUserStore();
+                }
+                return selectedUserStore;
+            }
+            set
+            {
+                selectedUserStore = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand NavigateUsersAfterSelectionCommand { get; private set; }
 
@@ -62,12 +81,30 @@ namespace Yakout.ViewModels
             NavigateUsersCommandBack = new NavigateUsersAfterSelectionCommandMethod<object, UsersVM>((_selectedUserStore) => { getDataFirst(_selectedUserStore); }, new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
 
             NavigateUsersAfterSelectionCommandMethod = new NavigateUsersAfterSelectionCommandMethod<object, UsersVM>((_selectedUserStore) => { OnItemSelectionChanged(_selectedUserStore); }, new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
+
+            _selectedUserStore.SelectedUserChanged += _selectedUserStore_SelectedUserChanged;
+        }
+
+        private void _selectedUserStore_SelectedUserChanged()
+        {
+            OnPropertyChanged(nameof(_selectedUserStore.SelectedUser. UserName));
+            OnPropertyChanged(nameof(_selectedUserStore.SelectedUser.Password));
+            OnPropertyChanged(nameof(_selectedUserStore.SelectedUser.FullName));
+            OnPropertyChanged(nameof(_selectedUserStore.SelectedUser.JobDes));
+            OnPropertyChanged(nameof(_selectedUserStore.SelectedUser.Email));
+            OnPropertyChanged(nameof(_selectedUserStore.SelectedUser.Phone));
+        }
+        public override void Dispose()
+        {
+            _selectedUserStore.SelectedUserChanged -= _selectedUserStore_SelectedUserChanged;
+            base.Dispose();
         }
 
         private void OnItemSelectionChanged(object obj)
         {
-            if (obj is DataRowView _obj)
+            try
             {
+                DataRowView _obj = (DataRowView)obj;
                 UsersStore usersStore = new UsersStore()
                 {
                     UserName = _obj[1].ToString(),
@@ -78,7 +115,17 @@ namespace Yakout.ViewModels
                     Phone = _obj[6].ToString()
                 };
                 _selectedUserStore.SelectedUser = usersStore;
+
             }
+            catch (Exception rr)
+            {
+                MessageBox.Show(rr+"");
+            }
+           
+
+            //if (obj is DataRowView _obj)
+            //{
+            //}
 
         }
 

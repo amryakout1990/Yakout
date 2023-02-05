@@ -94,20 +94,32 @@
     <Compile Include="Utilities\ParameterNavigationService.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
+    <Compile Include="ViewModels\CategoriesVM.cs" />
+    <Compile Include="ViewModels\ItemsVM.cs" />
     <Compile Include="ViewModels\MainBackGroundVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\NavigationVM.cs" />
     <Compile Include="ViewModels\OptionsVM.cs" />
+    <Compile Include="ViewModels\PaymentsVM.cs" />
     <Compile Include="ViewModels\PosVM.cs" />
     <Compile Include="ViewModels\ReportsVM.cs" />
     <Compile Include="ViewModels\SetUpVM.cs" />
     <Compile Include="ViewModels\UserSelectVM.cs" />
     <Compile Include="ViewModels\UsersVM.cs" />
+    <Compile Include="Views\Categories.xaml.cs">
+      <DependentUpon>Categories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Items.xaml.cs">
+      <DependentUpon>Items.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainBackGround.xaml.cs">
       <DependentUpon>MainBackGround.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Options.xaml.cs">
       <DependentUpon>Options.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payments.xaml.cs">
+      <DependentUpon>Payments.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pos.xaml.cs">
       <DependentUpon>Pos.xaml</DependentUpon>
@@ -160,11 +172,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Categories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Items.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainBackGround.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Options.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,19 +21,19 @@
                     <TextBlock Text="Users" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
-            <Button  Style="{StaticResource btnPages}"  >
+            <Button  Style="{StaticResource btnPages}" Command="{Binding NavigateItemsCommand}" >
                 <StackPanel>
                     <fa:ImageAwesome Icon="CartArrowDown" Style="{StaticResource faPages}"/>
                     <TextBlock Text="Items" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
-            <Button   Style="{StaticResource btnPages}"  >
+            <Button   Style="{StaticResource btnPages}" Command="{Binding NavigateCategoriesCommand}" >
                 <StackPanel>
                     <fa:ImageAwesome Icon="CodeFork" Style="{StaticResource faPages}"/>
                     <TextBlock Text="Categories" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource btnPages}" >
+            <Button Style="{StaticResource btnPages}" Command="{Binding NavigatePaymentsCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="CreditCard" Style="{StaticResource faPages}"/>
                     <TextBlock Text="Payments" Style="{StaticResource tbPagesBack}"/>

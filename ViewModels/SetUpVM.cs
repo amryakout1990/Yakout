@@ -20,6 +20,12 @@ namespace Yakout.ViewModels
 
         public ICommand NavigateMainBackGroundCommand { get; }
 
+        public ICommand NavigateItemsCommand { get; }
+
+        public ICommand NavigateCategoriesCommand { get; }
+
+        public ICommand NavigatePaymentsCommand { get; }
+
         private readonly NavigationStore _navigationStore;
 
         private SelectedUserStore _selectedUserStore = new SelectedUserStore();
@@ -78,7 +84,11 @@ namespace Yakout.ViewModels
            
             NavigateMainBackGroundCommand = new NavigateCommand<MainBackGroundVM>(new NavigationService<MainBackGroundVM>(navigationStore, () => new MainBackGroundVM()));
 
-            
+            NavigateItemsCommand = new NavigateCommand<ItemsVM>(new NavigationService<ItemsVM>(navigationStore, () => new ItemsVM()));
+
+            NavigateCategoriesCommand = new NavigateCommand<CategoriesVM>(new NavigationService<CategoriesVM>(navigationStore, () => new CategoriesVM()));
+
+            NavigatePaymentsCommand = new NavigateCommand<PaymentsVM>(new NavigationService<PaymentsVM>(navigationStore, () => new PaymentsVM()));
         }
 
 

@@ -33,4 +33,15 @@
         <view:UserSelect/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:ItemsVM}">
+        <view:Items/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:CategoriesVM}">
+        <view:Categories/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:PaymentsVM}">
+        <view:Payments/>
+    </DataTemplate>
 </ResourceDictionary>

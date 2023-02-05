@@ -14,18 +14,17 @@ namespace Yakout.Commands
     {
         private readonly Action<Tparameter> _execute;
 
-        //private readonly Func<TViewModel> _createViewModel;
-
         private readonly NavigationService<TViewModel> _navigationService;
 
-        private readonly Predicate<object> _canExecute;
+        private readonly Func<object, bool> _canExecute;
 
-        public NavigateUsersAfterSelectionCommandMethod(Action<Tparameter> execute, NavigationService<TViewModel> navigationService)
-       : this(execute, navigationService, null)
-        {
-        }
+       // public NavigateUsersAfterSelectionCommandMethod(Action<Tparameter> execute, NavigationService<TViewModel> navigationService)
+       //: this(execute, navigationService, null)
+       // {
 
-        public NavigateUsersAfterSelectionCommandMethod(Action<Tparameter> execute, NavigationService<TViewModel> navigationService, Predicate<object> canExecute)
+       // }
+
+        public NavigateUsersAfterSelectionCommandMethod(Action<Tparameter> execute, NavigationService<TViewModel> navigationService, Func<object, bool> canExecute = null)
         {
             _execute = execute;
             _navigationService = navigationService;
@@ -33,10 +32,9 @@ namespace Yakout.Commands
         }
         public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
+            //if (_canExecute == null)
                 return true;
-
-            return _canExecute((Tparameter)parameter);
+            //return _canExecute((Tparameter)parameter);
         }
 
         public event EventHandler CanExecuteChanged
@@ -45,10 +43,10 @@ namespace Yakout.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public void RaiseCanExecuteChanged()
-        {
-            CommandManager.InvalidateRequerySuggested();
-        }
+        //public void RaiseCanExecuteChanged()
+        //{
+        //    CommandManager.InvalidateRequerySuggested();
+        //}
 
         public void Execute(object parameter)
         {        
