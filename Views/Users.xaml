@@ -98,12 +98,10 @@
             </StackPanel>
 
             <Canvas Grid.Column="2">
-                <Button  x:Name="btnBack" Style="{StaticResource btnPages}"
+                <Button  x:Name="btnBack" Style="{StaticResource ButtonBack}"
                          Canvas.Right="0" Canvas.Bottom="10"
                          Command="{Binding NavigateSetUpCommand}">
                     <StackPanel>
-                        <fa:ImageAwesome Icon="Backward" Style="{StaticResource faPagesBack}"/>
-                        <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>
                     </StackPanel>
                 </Button>
             </Canvas>

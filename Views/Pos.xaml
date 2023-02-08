@@ -9,19 +9,15 @@
              d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource user}">
     <Grid>
         <Canvas>
-            <Button  Margin="10" Style="{StaticResource btnPages}" >
+            <Button  Margin="10" Style="{StaticResource ButtonStyle}" Width="100" Height="100" >
                 <StackPanel>
                     <Image Source="/image/gg.png"/>
                     <TextBlock Text="Point Of Sale" Style="{StaticResource tbPages}"/>
                 </StackPanel>
             </Button>
 
-            <Button x:Name="btnBack" Click="btnBack_Click" Style="{StaticResource btnPages}" Canvas.Right="0" Canvas.Bottom="0"
-            Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.NavigateMainBackGroundCommand}">
-                <StackPanel>
-                    <fa:ImageAwesome Icon="Backward" Width="30"/>
-                    <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>
-                </StackPanel>
+            <Button x:Name="btnBack" Click="btnBack_Click" Style="{StaticResource ButtonBack}" Canvas.Right="0" Canvas.Bottom="0"
+                    Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.NavigateMainBackGroundCommand}">
             </Button>
         </Canvas>
     </Grid>

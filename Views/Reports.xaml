@@ -15,10 +15,8 @@
                     <TextBlock Text="Sale Report" Style="{StaticResource tbPages}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnBack3" Style="{StaticResource btnPages}" Canvas.Right="0" Canvas.Bottom="0">
+            <Button x:Name="btnBack3" Style="{StaticResource ButtonBack}" Canvas.Right="0" Canvas.Bottom="0">
                 <StackPanel>
-                    <fa:ImageAwesome Icon="Backward" Width="30"/>
-                    <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
         </Canvas>

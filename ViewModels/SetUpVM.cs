@@ -86,7 +86,7 @@ namespace Yakout.ViewModels
 
             NavigateItemsCommand = new NavigateCommand<ItemsVM>(new NavigationService<ItemsVM>(navigationStore, () => new ItemsVM()));
 
-            NavigateCategoriesCommand = new NavigateCommand<CategoriesVM>(new NavigationService<CategoriesVM>(navigationStore, () => new CategoriesVM()));
+            NavigateCategoriesCommand = new NavigateCommand<CategoriesVM>(new NavigationService<CategoriesVM>(navigationStore, () => new CategoriesVM(navigationStore)));
 
             NavigatePaymentsCommand = new NavigateCommand<PaymentsVM>(new NavigationService<PaymentsVM>(navigationStore, () => new PaymentsVM()));
         }

@@ -14,26 +14,27 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-            <Button Style="{StaticResource btnPages}" 
+            <Button Style="{StaticResource btnSetUp}" 
                  Command="{Binding NavigateUsersCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="User" Style="{StaticResource faPages}"/>
                     <TextBlock Text="Users" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
-            <Button  Style="{StaticResource btnPages}" Command="{Binding NavigateItemsCommand}" >
+            <Button  Style="{StaticResource btnSetUp}"
+                     Command="{Binding NavigateItemsCommand}" >
                 <StackPanel>
                     <fa:ImageAwesome Icon="CartArrowDown" Style="{StaticResource faPages}"/>
                     <TextBlock Text="Items" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
-            <Button   Style="{StaticResource btnPages}" Command="{Binding NavigateCategoriesCommand}" >
+            <Button   Style="{StaticResource btnSetUp}" Command="{Binding NavigateCategoriesCommand}" >
                 <StackPanel>
                     <fa:ImageAwesome Icon="CodeFork" Style="{StaticResource faPages}"/>
                     <TextBlock Text="Categories" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource btnPages}" Command="{Binding NavigatePaymentsCommand}">
+            <Button Style="{StaticResource btnSetUp}" Command="{Binding NavigatePaymentsCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="CreditCard" Style="{StaticResource faPages}"/>
                     <TextBlock Text="Payments" Style="{StaticResource tbPagesBack}"/>
@@ -43,14 +44,10 @@
         </StackPanel>
 
         <Canvas Grid.Column="1">
-            <Button x:Name="btnBack2" Style="{StaticResource btnPages}"
+            <Button x:Name="btnBack2" Style="{StaticResource ButtonBack}"
                     Margin="10"
                      Canvas.Right="0" Canvas.Bottom="0"
                      Command="{Binding NavigateMainBackGroundCommand}">
-                <StackPanel>
-                    <fa:ImageAwesome Icon="Backward" Width="30" Style="{StaticResource faPagesBack}"/>
-                    <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>
-                </StackPanel>
             </Button>
         </Canvas>
     </Grid>

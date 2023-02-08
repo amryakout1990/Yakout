@@ -24,9 +24,9 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <DataGrid Name="gridUserSelect" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
                       CellStyle="{DynamicResource DataGridCellStyle1}" 
-                      Style="{StaticResource myGrid}"
+                      Style="{StaticResource GridStyle}"
                       ItemsSource="{Binding Path=table_users}" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="User Name" Binding="{Binding userName}"/>
@@ -51,12 +51,10 @@
                 
             </DataGrid>
             <Button Grid.Column="1" VerticalAlignment="Bottom"  x:Name="btnBack"  
-                    Style="{StaticResource btnPages}" Width="75" Height="75" 
+                    Style="{StaticResource ButtonBack}" Width="75" Height="75" 
                     Command="{Binding NavigateUsersCommandBack}">
 
                 <StackPanel>
-                    <fa:ImageAwesome Icon="Backward" Style="{StaticResource faPagesBack}"/>
-                    <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
 

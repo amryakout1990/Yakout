@@ -77,6 +77,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Commands\NavigateUsersAfterSelectionCommand.cs" />
     <Compile Include="Commands\NavigateUsersAfterSelectionCommandMethod.cs" />
     <Compile Include="Commands\UsersButtonsCommand.cs" />
@@ -153,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\StylesMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StylesSetUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -60,26 +60,22 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="3" Grid.Row="6">
-            <Button  x:Name="btnSave" Click="btnSave_Click" Style="{StaticResource btnPages}" >
+            <Button  x:Name="btnSave" Click="btnSave_Click" Style="{StaticResource ButtonBack}" >
                 <StackPanel>
                     <fa:ImageAwesome Icon="Save" Style="{StaticResource faPagesBack}" />
                     <TextBlock Text="Save" Style="{StaticResource tbPagesBack}"/>
                 </StackPanel>
             </Button>
-            <Button  x:Name="btnBack" Click="btnBack4_Click" Style="{StaticResource btnPages}" 
+            <Button  x:Name="btnBack" Click="btnBack4_Click" Style="{StaticResource ButtonBack}" 
                                  Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.MainBackGroundCommand}">
-                <StackPanel>
-                    <fa:ImageAwesome Icon="Backward" Style="{StaticResource faPagesBack}"/>
-                    <TextBlock Text="Back" Style="{StaticResource tbPagesBack}"/>
-                </StackPanel>
             </Button>
         </StackPanel>
         <Border Grid.Column="2" Grid.ColumnSpan="2" CornerRadius="10" Grid.Row="0" Grid.RowSpan="4" Background="White" Width="175" Height="175" Margin="0 10 10 0">
             <Image  x:Name="img" Stretch="Fill"/>
         </Border>
-        <Button Grid.Column="2" Name="btnSelect" Click="btnSelect_Click" Grid.Row="5" Grid.ColumnSpan="2" Width="220" Margin="10" Content="Select Image" Style="{StaticResource btnMainMenu}" >
+        <!--<Button Grid.Column="2" Name="btnSelect" Click="btnSelect_Click" Grid.Row="5" Grid.ColumnSpan="2" Width="220" Margin="10" Content="Select Image" Style="{StaticResource btnMainMenu}" >
 
-        </Button>
+        </Button>-->
         <TextBox x:Name="tx7" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" IsReadOnly="True" Margin="10"/>
     </Grid>
 </UserControl>

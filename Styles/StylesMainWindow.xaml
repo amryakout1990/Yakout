@@ -21,15 +21,18 @@
         <Setter Property="Margin" Value="0 0 20 0"/>
         <Setter Property="Foreground" Value="WhiteSmoke"/>
     </Style>
-    <Style x:Key="btnMainMenu" TargetType="Button">
+    
+    
+    <Style x:Key="btnMainMenu" TargetType="RadioButton">
         <Setter Property="Margin" Value="5 5 5 0"/>
         <Setter Property="Background" Value="DarkSlateBlue"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border BorderThickness="1" CornerRadius="10" Background="{TemplateBinding Background}" Padding="5">
+                <ControlTemplate TargetType="RadioButton">
+                    <Border BorderThickness="1" CornerRadius="10" Background="{TemplateBinding Background}" 
+                            Padding="5">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
@@ -39,7 +42,7 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="Blue"/>
             </Trigger>
-            <Trigger Property="IsMouseCaptured" Value="True">
+            <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background" Value="DodgerBlue"/>
             </Trigger>
 

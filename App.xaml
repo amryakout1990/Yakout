@@ -13,7 +13,8 @@
                     <ResourceDictionary Source="Styles/StylesUcOptions.xaml" />
                     <ResourceDictionary Source="/Utilities/DataTemplate.xaml"/>
                     <ResourceDictionary Source="/Styles/StylesUsers.xaml"/>
-                    <ResourceDictionary Source="/Styles/StylesUserSelect.xaml"/>
+                <ResourceDictionary Source="/Styles/StylesUserSelect.xaml"/>
+                <ResourceDictionary Source="/Styles/StylesSetUp.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
 

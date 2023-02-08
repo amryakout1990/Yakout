@@ -30,43 +30,56 @@
                     <fa:ImageAwesome Icon="Close" Grid.Column="1" Style="{StaticResource close}"/>
                 </StackPanel >
             </Button>
+            
             <Border Grid.Row="1" Background="BlueViolet" >
-                <StackPanel >
-                    <Button Style="{StaticResource btnMainMenu}" Name="btnPOS" 
-                            Command="{Binding NavigatePosCommand}">
-                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
-                            <fa:ImageAwesome Icon="ShoppingCart" Style="{StaticResource faMainMenu}" Margin="40 0 0 0"/>
-                            <TextBlock Text="Point Of Sale" Style="{StaticResource tbMainMenu}" Margin="30 10 0 0"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Style="{StaticResource btnMainMenu}" Name="btnSetUp" Command="{Binding NavigateSetUPCommand}">
-                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal" >
-                            <fa:ImageAwesome Icon="Key" Style="{StaticResource faMainMenu}"/>
-                            <TextBlock Text="Set Up" Style="{StaticResource tbMainMenu}"/>
-                        </StackPanel>
-                    </Button>
+                        <StackPanel >
+                            <RadioButton 
+                                Style="{StaticResource btnMainMenu}" 
+                                Name="btnPOS" 
+                                Command="{Binding NavigatePosCommand}">
+                                <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="ShoppingCart" Style="{StaticResource faMainMenu}" Margin="40 0 0 0"/>
+                                    <TextBlock Text="Point Of Sale" Style="{StaticResource tbMainMenu}" Margin="30 10 0 0"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton 
+                                Style="{StaticResource btnMainMenu}" 
+                                Name="btnSetUp" 
+                                Command="{Binding NavigateSetUPCommand}">
+                                <StackPanel Style="{StaticResource stack}" Orientation="Horizontal" >
+                                    <fa:ImageAwesome Icon="Key" Style="{StaticResource faMainMenu}"/>
+                                    <TextBlock Text="Set Up" Style="{StaticResource tbMainMenu}"/>
+                                </StackPanel>
+                            </RadioButton>
 
-                    <Button Style="{StaticResource btnMainMenu}" Name="btnReports" 
-                            Command="{Binding NavigateUsersSelectCommand}">
-                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
-                            <fa:ImageAwesome Icon="PencilSquare" Style="{StaticResource faMainMenu}"/>
-                            <TextBlock Text="Reports" Style="{StaticResource tbMainMenu}"/>
+                            <RadioButton 
+                                Style="{StaticResource btnMainMenu}" 
+                                Name="btnReports" 
+                                Command="{Binding NavigateUsersSelectCommand}">
+                                <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="PencilSquare" Style="{StaticResource faMainMenu}"/>
+                                    <TextBlock Text="Reports" Style="{StaticResource tbMainMenu}"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton 
+                                Style="{StaticResource btnMainMenu}" 
+                                Name="btnOptions"
+                                Command="{Binding NavigateMainBackGroundCommand}" >
+                                <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="HandPaperOutline" Style="{StaticResource faMainMenu}"/>
+                                    <TextBlock Text="Options" Style="{StaticResource tbMainMenu}"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton 
+                                Name="btnLogOut" 
+                                Style="{StaticResource btnMainMenu}" 
+                                Margin="5 212 5 0" Click="btnLogOut_Click">
+                                <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="CircleOutlineNotch" Style="{StaticResource faMainMenu}"/>
+                                    <TextBlock Text="Log Out" Style="{StaticResource tbMainMenu}"/>
+                                </StackPanel>
+                            </RadioButton>
                         </StackPanel>
-                    </Button>
-                    <Button Style="{StaticResource btnMainMenu}" Name="btnOptions"
-                            Command="{Binding NavigateMainBackGroundCommand}" >
-                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
-                            <fa:ImageAwesome Icon="HandPaperOutline" Style="{StaticResource faMainMenu}"/>
-                            <TextBlock Text="Options" Style="{StaticResource tbMainMenu}"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Name="btnLogOut" Style="{StaticResource btnMainMenu}" Margin="5 212 5 0" Click="btnLogOut_Click">
-                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
-                            <fa:ImageAwesome Icon="CircleOutlineNotch" Style="{StaticResource faMainMenu}"/>
-                            <TextBlock Text="Log Out" Style="{StaticResource tbMainMenu}"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
             </Border>
             <Grid>
                 <Grid.ColumnDefinitions>
