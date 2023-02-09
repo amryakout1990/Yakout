@@ -32,6 +32,14 @@ namespace Yakout.ViewModels
             set { _table_users = value; OnPropertyChanged(); }
         }
 
+        private DataRowView _selected_User;
+
+        public DataRowView Selected_User
+        {
+            get { return _selected_User; }
+            set { _selected_User = value; }
+        }
+
         private DataTable _myUser;
 
         public DataTable myUser
@@ -65,6 +73,8 @@ namespace Yakout.ViewModels
 
         public ICommand NavigateUsersCommandBack { get; private set; }
 
+        public ICommand NavigateUsersAfterSelection { get; private set; }
+
         public UserSelectVM(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
@@ -82,7 +92,30 @@ namespace Yakout.ViewModels
 
             NavigateUsersAfterSelectionCommandMethod = new NavigateUsersAfterSelectionCommandMethod<object, UsersVM>((_selectedUserStore) => { OnItemSelectionChanged(_selectedUserStore); }, new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
 
-            _selectedUserStore.SelectedUserChanged += _selectedUserStore_SelectedUserChanged;
+            NavigateUsersAfterSelection = new ActionCommand(GetUser);
+
+            _selectedUserStore_SelectedUserChanged();
+
+        }
+
+        private void GetUser()
+        {
+            if (Selected_User!=null)
+            {
+            _selectedUserStore.SelectedUser.UserName = Selected_User[1].ToString();
+            _selectedUserStore.SelectedUser.Password = Selected_User[2].ToString();
+            _selectedUserStore.SelectedUser.FullName = Selected_User[3].ToString();
+            _selectedUserStore.SelectedUser.JobDes = Selected_User[4].ToString();
+            _selectedUserStore.SelectedUser.Email = Selected_User[5].ToString();
+            _selectedUserStore.SelectedUser.Phone = Selected_User[6].ToString();
+            _selectedUserStore_SelectedUserChanged();
+            _navigationStore.CurrentViewModel = new UsersVM(_navigationStore,_selectedUserStore);
+            Dispose();
+            }
+            else
+            {
+                MessageBox.Show("empty");
+            }
         }
 
         private void _selectedUserStore_SelectedUserChanged()

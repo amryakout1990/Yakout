@@ -122,24 +122,66 @@ namespace Yakout.ViewModels
         public ICommand UsersNextButtonCommand => new UsersButtonsCommand(getDataNext);
         public ICommand UsersLastButtonCommand => new UsersButtonsCommand(getDataLast);
 
-        public UsersVM(NavigationStore navigationStore,SelectedUserStore selectedUserStore)
+        public UsersVM(NavigationStore navigationStore)
         {
-            //index = 1;
-
             _navigationStore = navigationStore;
-            _selectedUserStore = selectedUserStore;
-            _userName = _selectedUserStore.SelectedUser.UserName;
-            _password = _selectedUserStore.SelectedUser.Password;
-            _fullName = _selectedUserStore.SelectedUser.FullName;
-            _jobDes = _selectedUserStore.SelectedUser.JobDes;
-            _email = _selectedUserStore.SelectedUser.Email;
-            _phone = _selectedUserStore.SelectedUser.Phone;
+
+            index = 1;
+
+            table = new DataTable();
+            using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users where id=" +index + "", connection))
+                {
+                    table = new DataTable();
+                    adapter.Fill(table);
+                    if (table.Rows.Count > 0)
+                    {
+                        UserName = table.Rows[0][1].ToString();
+                        Password = table.Rows[0][2].ToString();
+                        FullName = table.Rows[0][3].ToString();
+                        JobDes = table.Rows[0][4].ToString();
+                        Email = table.Rows[0][5].ToString();
+                        Phone = table.Rows[0][6].ToString();
+
+                    }
+                    else
+                    {
+                        UserName = "";
+                        Password = "";
+                        FullName = "";
+                        JobDes = "";
+                        Email = "";
+                        Phone = "";
+                    }
+
+                }
+            }
 
             NavigateSetUpCommand = new NavigateCommand<SetUpVM>(new NavigationService<SetUpVM>(navigationStore, () => new SetUpVM(_navigationStore)));
+           
+            NavigateUsersSelectCommand = new NavigateCommand<UserSelectVM>(new NavigationService<UserSelectVM>(navigationStore, () => new UserSelectVM(_navigationStore)));
+
+            
+        }
+        public UsersVM(NavigationStore navigationStore, SelectedUserStore selectedUserStore)
+        {
+            _navigationStore = navigationStore;
+            _selectedUserStore = selectedUserStore;
+
+            UserName = _selectedUserStore.SelectedUser.UserName;
+            Password = _selectedUserStore.SelectedUser.Password;
+            FullName = _selectedUserStore.SelectedUser.FullName;
+            JobDes = _selectedUserStore.SelectedUser.JobDes;
+            Email = _selectedUserStore.SelectedUser.Email;
+            Phone = _selectedUserStore.SelectedUser.Phone;
+
+            NavigateSetUpCommand = new NavigateCommand<SetUpVM>(new NavigationService<SetUpVM>(navigationStore, () => new SetUpVM(_navigationStore)));
+
             NavigateUsersSelectCommand = new NavigateCommand<UserSelectVM>(new NavigationService<UserSelectVM>(navigationStore, () => new UserSelectVM(_navigationStore)));
 
             _selectedUserStore.SelectedUserChanged += _selectedUserStore_SelectedUserChanged;
-            
+
         }
 
         private void _selectedUserStore_SelectedUserChanged()
@@ -153,11 +195,6 @@ namespace Yakout.ViewModels
             OnPropertyChanged(nameof(Phone));
         }
 
-        public override void Dispose()
-        {
-            _selectedUserStore.SelectedUserChanged -= _selectedUserStore_SelectedUserChanged;
-            base.Dispose();
-        }
         private void getDataSave(object ooo)
         {
             if (index != 0)
@@ -233,8 +270,6 @@ namespace Yakout.ViewModels
                     connection.Open();
                     command.ExecuteNonQuery();
                     MessageBox.Show("updated Successfuly");
-                    MessageBox.Show(UserName);
-                    MessageBox.Show(index+"");
                     }
 
                 }

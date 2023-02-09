@@ -43,12 +43,10 @@
 
         </StackPanel>
 
-        <Canvas Grid.Column="1">
+        <Grid Grid.Column="1">
             <Button x:Name="btnBack2" Style="{StaticResource ButtonBack}"
-                    Margin="10"
-                     Canvas.Right="0" Canvas.Bottom="0"
                      Command="{Binding NavigateMainBackGroundCommand}">
             </Button>
-        </Canvas>
+        </Grid>
     </Grid>
 </UserControl>

@@ -36,52 +36,8 @@ namespace Yakout.ViewModels
         {
             _navigationStore = navigationStore;
 
-            table = new DataTable();
-            using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users where id=" +1+ "", connection))
-                {
-                    table = new DataTable();
-                    adapter.Fill(table);
-                    if (table.Rows.Count > 0)
-                    {
-                        UsersStore _usersStore = new UsersStore()
-                        {
-                            UserName = table.Rows[0][1].ToString(),
-                            Password = table.Rows[0][2].ToString(),
-                            FullName = table.Rows[0][3].ToString(),
-                            JobDes = table.Rows[0][4].ToString(),
-                            Email = table.Rows[0][5].ToString(),
-                            Phone = table.Rows[0][6].ToString()
-                        };
-                        _selectedUserStore.SelectedUser = _usersStore;
+            NavigateUsersCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore)));
 
-                        NavigateUsersCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
-
-                    }
-                    else
-                    {
-                        UsersStore _usersStore = new UsersStore()
-                        {
-                            UserName = "",
-                            Password = "",
-                            FullName = "",
-                            JobDes = "",
-                            Email = "",
-                            Phone = ""
-                        };
-
-                        _selectedUserStore.SelectedUser = _usersStore;
-
-                        NavigateUsersCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore, _selectedUserStore)));
-
-                    }
-
-                }
-            }
-
-
-           
             NavigateMainBackGroundCommand = new NavigateCommand<MainBackGroundVM>(new NavigationService<MainBackGroundVM>(navigationStore, () => new MainBackGroundVM()));
 
             NavigateItemsCommand = new NavigateCommand<ItemsVM>(new NavigationService<ItemsVM>(navigationStore, () => new ItemsVM()));

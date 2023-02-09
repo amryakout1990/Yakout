@@ -15,7 +15,17 @@
         </Grid.RowDefinitions>
         <!--Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.NavigateUsersSelectCommand}">-->
 
-        <StackPanel Orientation="Horizontal">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Button x:Name="select" Style="{StaticResource btnUsers}"
                     Command="{Binding NavigateUsersSelectCommand}">
                 <StackPanel>
@@ -23,50 +33,54 @@
                     <TextBlock Text="Select" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="new" Style="{StaticResource btnUsers}" 
+            <Button Grid.Column="1" x:Name="new" Style="{StaticResource btnUsers}" 
                     Command="{Binding UsersNewButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="NewspaperOutline"  Style="{StaticResource fa}"/>
                     <TextBlock Text="New" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="save" Style="{StaticResource btnUsers}"
+            <Button Grid.Column="2" x:Name="save" Style="{StaticResource btnUsers}"
                     Command="{Binding UsersSaveButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="Save"  Style="{StaticResource fa}"/>
                     <TextBlock Text="Save" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="first" Style="{StaticResource btnUsers}" 
+            <Button Grid.Column="3" x:Name="first" Style="{StaticResource btnUsers}" 
                     Command="{Binding UsersFirstButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="FastBackward"  Style="{StaticResource fa}"/>
                     <TextBlock Text="First" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="back" Style="{StaticResource btnUsers}" 
+            <Button Grid.Column="4" x:Name="back" Style="{StaticResource btnUsers}" 
                     Command="{Binding UsersBackButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="Backward"  Style="{StaticResource fa}"/>
                     <TextBlock Text="Back" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="next" Style="{StaticResource btnUsers}" 
+            <Button Grid.Column="5" x:Name="next" Style="{StaticResource btnUsers}" 
                     Command="{Binding UsersNextButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="Forward"  Style="{StaticResource fa}"/>
                     <TextBlock Text="Next" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="last" Style="{StaticResource btnUsers}" 
+            <Button Grid.Column="6" x:Name="last" Style="{StaticResource btnUsers}" 
                     Command="{Binding UsersLastButtonCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="FastForward"  Style="{StaticResource fa}"/>
                     <TextBlock Text="Last" Style="{StaticResource btnText}"/>
                 </StackPanel>
             </Button>
+            <Button Grid.Column="7" x:Name="btnBack" Style="{StaticResource ButtonBack}"
+                         Canvas.Right="0" Canvas.Bottom="10"
+                         Command="{Binding NavigateSetUpCommand}">
+            </Button>
 
-        </StackPanel>
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -98,12 +112,6 @@
             </StackPanel>
 
             <Canvas Grid.Column="2">
-                <Button  x:Name="btnBack" Style="{StaticResource ButtonBack}"
-                         Canvas.Right="0" Canvas.Bottom="10"
-                         Command="{Binding NavigateSetUpCommand}">
-                    <StackPanel>
-                    </StackPanel>
-                </Button>
             </Canvas>
         </Grid>
     </Grid>
