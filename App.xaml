@@ -8,13 +8,18 @@
 
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="Styles/StylesMainWindow.xaml" />
-                    <ResourceDictionary Source="Styles/StylesMain.xaml" />
-                    <ResourceDictionary Source="Styles/StylesUcOptions.xaml" />
                     <ResourceDictionary Source="/Utilities/DataTemplate.xaml"/>
-                    <ResourceDictionary Source="/Styles/StylesUsers.xaml"/>
-                <ResourceDictionary Source="/Styles/StylesUserSelect.xaml"/>
-                <ResourceDictionary Source="/Styles/StylesSetUp.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesButton.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesTextBox.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesTextBlock.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesGrid.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesLabel.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesImage.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesFaAwesome.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesComboBox.xaml"/>
+                    <ResourceDictionary Source="/Styles/StylesUserControl.xaml"/>
+                <ResourceDictionary Source="/Styles/StylesColor.xaml"/>
+                <ResourceDictionary Source="/Styles/StylesPanel.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
 

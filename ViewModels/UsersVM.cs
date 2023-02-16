@@ -117,7 +117,6 @@ namespace Yakout.ViewModels
 
         public ICommand UsersNewButtonCommand => new UsersButtonsCommand(NewButton);
         public ICommand UsersFirstButtonCommand => new UsersButtonsCommand(getDataFirst);
-        public ICommand UsersSaveButtonCommand => new UsersSave(this,getDataSave);
         public ICommand UsersBackButtonCommand => new UsersButtonsCommand(getDataBack);
         public ICommand UsersNextButtonCommand => new UsersButtonsCommand(getDataNext);
         public ICommand UsersLastButtonCommand => new UsersButtonsCommand(getDataLast);

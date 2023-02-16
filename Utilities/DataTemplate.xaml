@@ -44,4 +44,8 @@
     <DataTemplate DataType="{x:Type vm:PaymentsVM}">
         <view:Payments/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type view:ItemsSelectVM}">
+        <view:ItemsSelect/>
+    </DataTemplate>
 </ResourceDictionary>

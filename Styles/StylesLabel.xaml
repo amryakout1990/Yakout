@@ -1,16 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="btnUsers" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-        <Setter Property="Width" Value="60"/>
-        <Setter Property="Height" Value="60"/>
-        <Setter Property="Background" Value="{DynamicResource btnColor}"/>
-        <Setter Property="Margin" Value="10 10 0 10"/>
-    </Style>
-
-    <Style x:Key="btnText" TargetType="TextBlock">
+    <Style x:Key="labelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Foreground" Value="{DynamicResource faColor}"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <Style x:Key="labelUsers" TargetType="Label" BasedOn="{StaticResource labelStyle}">
@@ -20,7 +15,5 @@
         <Setter Property="Margin" Value="10,0,0,10"/>
     </Style>
 
-    <Style x:Key="box" TargetType="TextBox" BasedOn="{StaticResource textboxStyle}">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-    </Style>
+
 </ResourceDictionary>

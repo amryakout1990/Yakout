@@ -40,7 +40,7 @@ namespace Yakout.ViewModels
 
             NavigateMainBackGroundCommand = new NavigateCommand<MainBackGroundVM>(new NavigationService<MainBackGroundVM>(navigationStore, () => new MainBackGroundVM()));
 
-            NavigateItemsCommand = new NavigateCommand<ItemsVM>(new NavigationService<ItemsVM>(navigationStore, () => new ItemsVM()));
+            NavigateItemsCommand = new NavigateCommand<ItemsVM>(new NavigationService<ItemsVM>(navigationStore, () => new ItemsVM(_navigationStore)));
 
             NavigateCategoriesCommand = new NavigateCommand<CategoriesVM>(new NavigationService<CategoriesVM>(navigationStore, () => new CategoriesVM(navigationStore)));
 

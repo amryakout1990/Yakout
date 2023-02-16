@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel>
-            <Button Style="{StaticResource btnSetUp}" 
+            <Button Style="{StaticResource  btnSetUp}" 
                  Command="{Binding NavigateUsersCommand}">
                 <StackPanel>
                     <fa:ImageAwesome Icon="User" Style="{StaticResource faPages}"/>

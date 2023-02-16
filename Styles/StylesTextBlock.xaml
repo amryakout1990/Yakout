@@ -1,7 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Style x:Key="tbPages" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="15"/>
+    </Style>
 
+    <Style x:Key="tbPagesBack" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Margin" Value="0 10 0 0"/>
+    </Style>
+
+    <Style x:Key="btnText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource faColor}"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
 
     <Style x:Key="tb" TargetType="TextBlock">
         <Setter Property="FontSize" Value="15"/>
@@ -75,14 +90,12 @@
 
     </Style>
 
-    <Style x:Key="tx1" TargetType="TextBox">
-        <Setter Property="Margin" Value="13"/>
-        <Setter Property="Width" Value="300"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="15"/>
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="Foreground" Value="DodgerBlue"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
+    <Style x:Key="tbMainMenu" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="Margin" Value="0 10 0 0"/>
     </Style>
+
 
 </ResourceDictionary>

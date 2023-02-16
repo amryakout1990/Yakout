@@ -83,33 +83,35 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel>
-                <Label Content="User Name" Style="{StaticResource  labelUsers}"/>
-                <Label Content="Password" Style="{StaticResource  labelUsers}"/>
-                <Label Content="Full Name" Style="{StaticResource  labelUsers}"/>
-                <Label Content="Job Des" Style="{StaticResource  labelUsers}"/>
-                <Label Content="Email" Style="{StaticResource  labelUsers}"/>
-                <Label Content="Phone" Style="{StaticResource  labelUsers}"/>
-                <!--<TextBox Name="tx1" Style="{StaticResource box}" Text="{Binding Path=UserName,Mode=TwoWay}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="User Name" Style="{StaticResource  labelUsers}"/>
+            <Label Grid.Row="1" Content="Password" Style="{StaticResource  labelUsers}"/>
+            <Label Grid.Row="2" Content="Full Name" Style="{StaticResource  labelUsers}"/>
+            <Label Grid.Row="3" Content="Job Des" Style="{StaticResource  labelUsers}"/>
+            <Label Grid.Row="4" Content="Email" Style="{StaticResource  labelUsers}"/>
+            <Label Grid.Row="5" Content="Phone" Style="{StaticResource  labelUsers}"/>
+            <!--<TextBox Name="tx1" Style="{StaticResource box}" Text="{Binding Path=UserName,Mode=TwoWay}"/>
                 <TextBox Name="tx2" Style="{StaticResource box}" Text="{Binding Path=Password,Mode=TwoWay}"/>
                 <TextBox Name="tx3" Style="{StaticResource box}" Text="{Binding Path=FullName,Mode=TwoWay }"/>
                 <TextBox Name="tx4" Style="{StaticResource box}" Text="{Binding Path=JobDes,Mode=TwoWay}"/>
                 <TextBox Name="tx5" Style="{StaticResource box}" Text="{Binding Path=Email,Mode=TwoWay}"/>
                 <TextBox Name="tx6" Style="{StaticResource box}" Text="{Binding Path=Phone,Mode=TwoWay }"/>-->
-
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <TextBox Name="tx1" Style="{StaticResource box}" Text="{Binding UserName}"/>
-                <TextBox Name="tx2" Style="{StaticResource box}" Text="{Binding Password}"/>
-                <TextBox Name="tx3" Style="{StaticResource box}" Text="{Binding FullName}"/>
-                <TextBox Name="tx4" Style="{StaticResource box}" Text="{Binding JobDes}"/>
-                <TextBox Name="tx5" Style="{StaticResource box}" Text="{Binding Email}"/>
-                <TextBox Name="tx6" Style="{StaticResource box}" Text="{Binding Phone}"/>
-            </StackPanel>
+            <TextBox Grid.Column="1" Grid.Row="0" Name="tx1" Style="{StaticResource box}" Text="{Binding UserName}"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Name="tx2" Style="{StaticResource box}" Text="{Binding Password}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Name="tx3" Style="{StaticResource box}" Text="{Binding FullName}"/>
+            <TextBox Grid.Column="1" Grid.Row="3"  Name="tx4" Style="{StaticResource box}" Text="{Binding JobDes}"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Name="tx5" Style="{StaticResource box}" Text="{Binding Email}"/>
+            <TextBox Grid.Column="1" Grid.Row="5" Name="tx6" Style="{StaticResource box}" Text="{Binding Phone}"/>
 
             <Canvas Grid.Column="2">
             </Canvas>
