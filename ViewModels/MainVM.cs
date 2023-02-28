@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using Yakout.Commands;
 using Yakout.Models;
@@ -32,6 +35,7 @@ namespace Yakout.ViewModels
 
         public MainVM(NavigationStore navigationStore)
         {
+
             _navigationStore = navigationStore;
 
 
@@ -48,6 +52,7 @@ namespace Yakout.ViewModels
 
             ///تم الاستغناء عن الطرق القديمة لعمل command 
             ///كل واحد لحالة
+
         }
 
         private void _navigationStore_CurrentViewModelChanged()

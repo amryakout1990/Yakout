@@ -8,7 +8,7 @@
         xmlns:v="clr-namespace:Yakout.Views"
         xmlns:local="clr-namespace:Yakout.Views" xmlns:viewmodels="clr-namespace:Yakout.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SetUpVM}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="780" Width="1200" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" >
+        Title="MainWindow" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" >
     <!--<Window.DataContext>
         <vm:NavigationVM></vm:NavigationVM>
     </Window.DataContext>-->
@@ -19,28 +19,28 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
             
             <Border Grid.Row="1" Background="BlueViolet" >
-                        <StackPanel >
+                <StackPanel >
                             <RadioButton 
                                 Style="{StaticResource btnMainMenu}" 
                                 Name="btnPOS" 
                                 Command="{Binding NavigatePosCommand}">
                                 <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
-                                    <fa:ImageAwesome Icon="ShoppingCart" Style="{StaticResource faMainMenu}" Margin="40 0 0 0"/>
-                                    <TextBlock Text="Point Of Sale" Style="{StaticResource tbMainMenu}" Margin="30 10 0 0"/>
+                                    <fa:ImageAwesome Icon="ShoppingCart" Style="{StaticResource faMainMenu}" />
+                                    <TextBlock Text="POS" Style="{StaticResource tbMainMenu}" />
                                 </StackPanel>
                             </RadioButton>
                             <RadioButton 
                                 Style="{StaticResource btnMainMenu}" 
                                 Name="btnSetUp" 
-                                Command="{Binding NavigateSetUPCommand}">
+                                Command="{Binding NavigateSetUPCommand}" HorizontalContentAlignment="Left">
                                 <StackPanel Style="{StaticResource stack}" Orientation="Horizontal" >
                                     <fa:ImageAwesome Icon="Key" Style="{StaticResource faMainMenu}"/>
                                     <TextBlock Text="Set Up" Style="{StaticResource tbMainMenu}"/>
@@ -68,7 +68,7 @@
                             <RadioButton 
                                 Name="btnLogOut" 
                                 Style="{StaticResource btnMainMenu}" 
-                                Margin="5 212 5 0" Click="btnLogOut_Click">
+                                Margin="5 170 5 0" Click="btnLogOut_Click">
                                 <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
                                     <fa:ImageAwesome Icon="CircleOutlineNotch" Style="{StaticResource faMainMenu}"/>
                                     <TextBlock Text="Log Out" Style="{StaticResource tbMainMenu}"/>
@@ -81,11 +81,11 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image Source="/image/R.png"/>
+                <Image Width="50" Source="/image/R.png"/>
                 <StackPanel Orientation="Vertical" Grid.Column="1">
-                    <TextBlock Text="Yakout POS" Margin="5 10 5 5" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <TextBlock Text="1.0.0.1" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Yakout Company" FontSize="15" Foreground="DodgerBlue" FontWeight="Bold" HorizontalAlignment="Center" TextDecorations="Underline"/>
+                    <TextBlock Text="Yakout" Margin="5 10 5 5" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="1.0.0.1" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Yakout Company" FontSize="10" Foreground="DodgerBlue" FontWeight="Bold" HorizontalAlignment="Center" TextDecorations="Underline"/>
                 </StackPanel>
             </Grid>
             <Border Grid.Column="1" Background="BlueViolet">
@@ -97,14 +97,13 @@
                     <Canvas>
                         <Label x:Name="lbl" FontSize="15" Foreground="White" Canvas.Top="10" Canvas.Right="20" Content="{Binding MyTimer}"/>
                         <TextBlock Text="Point Of Sale" Canvas.Left="250" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 25 0 0"/>
-                        <Ellipse Width="40" Height="40" Fill="DarkViolet" Canvas.Left="150" Canvas.Top="20" StrokeThickness="10"/>
-                        <Ellipse Width="40" Height="40" Fill="DarkViolet" Canvas.Right="230" Canvas.Top="20" StrokeThickness="10"/>
+                        <!--<Ellipse Width="40" Height="40" Fill="DarkViolet" Canvas.Left="150" Canvas.Top="20" StrokeThickness="10"/>
+                        <Ellipse Width="40" Height="40" Fill="DarkViolet" Canvas.Right="230" Canvas.Top="20" StrokeThickness="10"/>-->
                     </Canvas>
                 </Grid>
             </Border>
             <Rectangle Stroke="BlueViolet" StrokeThickness="3" Grid.Column="0" Grid.Row="0"/>
-            <ContentControl Content="{Binding CurrentViewModel}"
-                            Width="900" Height="650"
+            <ContentControl Content="{Binding CurrentViewModel}" 
                             Grid.Row="1" Grid.Column="1" >
             </ContentControl>
             <!--CurrentView-->

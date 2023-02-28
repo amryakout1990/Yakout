@@ -15,11 +15,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Interop;
 using Yakout.Stores;
 using Yakout.Views;
+using System.ComponentModel;
+using System.Collections;
+using Yakout.Utilities;
 
 namespace Yakout.ViewModels
 {
-    class ItemsVM : Utilities.ViewModelBase
+    class ItemsVM : Utilities.ViewModelBase, INotifyDataErrorInfo
     {
+
         byte[] databaseByteArray;
 
         private SqlCommand command;
@@ -55,7 +59,17 @@ namespace Yakout.ViewModels
         public string ItemName
         {
             get { return _itemName; }
-            set { _itemName = value; OnPropertyChanged(); }
+            set {
+                _itemName = value;
+                _setError.ClearErrors(nameof(ItemName));
+                if (string.IsNullOrEmpty(_itemName))
+                {
+                    _setError.AddError(nameof(ItemName), "Enter Item Name");
+                }
+
+                OnPropertyChanged(nameof(ItemName));
+
+            }
         }
 
         private string _price;
@@ -63,7 +77,16 @@ namespace Yakout.ViewModels
         public string Price
         {
             get { return _price; }
-            set { _price = value; OnPropertyChanged(); }
+            set {
+                 _price = value;
+                _setError.ClearErrors(nameof(Price));
+                if (string.IsNullOrEmpty(_price))
+                {
+                    _setError.AddError(nameof(Price), "Enter Price");
+                }
+
+                OnPropertyChanged(nameof(Price));
+                }
         }
 
         private string _notes;
@@ -71,7 +94,17 @@ namespace Yakout.ViewModels
         public string Notes
         {
             get { return _notes; }
-            set { _notes = value; OnPropertyChanged(); }
+            set {
+                _notes = value;
+                _setError.ClearErrors(nameof(Notes));
+                if (string.IsNullOrEmpty(_notes))
+                {
+                    _setError.AddError(nameof(Notes), "Enter Notes");
+                }
+
+                OnPropertyChanged(nameof(Notes));
+
+            }
         }
 
         private int _itemId;
@@ -99,12 +132,19 @@ namespace Yakout.ViewModels
         }
 
 
-        private string _selItem;
+        private string _selectedCategoryId;
 
-        public string SelItem
+        public string SelectedCategoryId
         {
-            get { return _selItem; }
-            set { _selItem = value; OnPropertyChanged(); }
+            get { return _selectedCategoryId; }
+            set {_selectedCategoryId = value; OnPropertyChanged();}
+        }
+        private string _selItem2;
+
+        public string SelItem2
+        {
+            get { return _selItem2; }
+            set { _selItem2 = value; OnPropertyChanged(); }
         }
 
         private byte[] _imageToByteArray;
@@ -123,6 +163,8 @@ namespace Yakout.ViewModels
 
         private BitmapSource _bitmapSource;
 
+        private SelectedItemStore _selectedItemStore;
+
         public BitmapSource bitmapSource
         {
             get { return _bitmapSource; }
@@ -131,20 +173,26 @@ namespace Yakout.ViewModels
 
         private readonly NavigationStore _navigationStore;
 
+        public bool CanDo => !HasErrors;
+
+        private readonly SetError _setError;
+
+        public bool HasErrors => _setError.HasErrors;
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
         public ItemsVM(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
+            _setError = new SetError();
+            _setError.ErrorsChanged += _setError_ErrorsChanged;
 
             LoadCategories();
 
             LoadItems();
-
             OpenFD = new ActionCommand(OpenFiDi);
-
             SaveItemCommand = new ActionCommand(SaveOrUpdateItem);
-
             NewItemCommand = new ActionCommand(NewItem);
-
             firstCommand = new ActionCommand(first);
             backCommand = new ActionCommand(back);
             nextCommand = new ActionCommand(next);
@@ -153,17 +201,66 @@ namespace Yakout.ViewModels
             NavigateSetUpCommand = new ActionCommand(NavigateSetUp);
         }
 
-        private void NavigateItemsSelect()
+
+        public ItemsVM(NavigationStore navigationStore, SelectedItemStore selectedItemStore) 
         {
-            _navigationStore.CurrentViewModel=new ItemsSelectVM();
+            _selectedItemStore = selectedItemStore;
+            _navigationStore = navigationStore;
+            _setError = new SetError();
+            _setError.ErrorsChanged += _setError_ErrorsChanged;
+
+            LoadCategories();
+
+            ShowItemAfterSelection();
+
+            OpenFD = new ActionCommand(OpenFiDi);
+            SaveItemCommand = new ActionCommand(SaveOrUpdateItem);
+            NewItemCommand = new ActionCommand(NewItem);
+            firstCommand = new ActionCommand(first);
+            backCommand = new ActionCommand(back);
+            nextCommand = new ActionCommand(next);
+            lastCommand = new ActionCommand(last); ;
+            NavigateItemsSelectCommand = new ActionCommand(NavigateItemsSelect);
+            NavigateSetUpCommand = new ActionCommand(NavigateSetUp);
+
+        }
+        private void _setError_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            ErrorsChanged?.Invoke(this, e);
+            OnPropertyChanged(nameof(CanDo));
         }
 
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _setError.GetErrors(propertyName);
+        }
+
+        private void ShowItemAfterSelection()
+        {
+            ItemId = _selectedItemStore.SelectedItem.ItemId;
+            //ShowItem(ItemId);
+
+            //طريقة جديدة
+            ItemName = _selectedItemStore.SelectedItem.ItemName.ToString();
+            SelectedCategoryId = _selectedItemStore.SelectedItem.CategoryId.ToString();
+            Price = _selectedItemStore.SelectedItem.Price.ToString();
+            Notes = _selectedItemStore.SelectedItem.Notes.ToString();
+            databaseByteArray = (byte[])_selectedItemStore.SelectedItem.Image;
+            MemoryStream memory = new MemoryStream(databaseByteArray);
+            bitmapSource = source(new Bitmap(memory));
+
+        }
+
+        private void NavigateItemsSelect()
+        {
+            _navigationStore.CurrentViewModel=new ItemsSelectVM(_navigationStore,_selectedItemStore);
+
+        }
         private void first()
         {
             ItemId = 1;
             ShowItem(ItemId);
         }
-
         private void back()
         {
             int NewItemId =ItemId;
@@ -188,29 +285,23 @@ namespace Yakout.ViewModels
             ShowItem(ItemId);
             
         }
-
-
         private BitmapSource source(Bitmap bitmap)
         {
             return Imaging.CreateBitmapSourceFromHBitmap(bitmap.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty,
                                                          BitmapSizeOptions.FromEmptyOptions());
         }
-
         private void BitmapSourceToByteArray(BitmapSource bitmapSource)
         {
             //Bitmap map = new Bitmap(;
         }
-
         private void NavigateSetUp()
         {
             _navigationStore.CurrentViewModel = new SetUpVM(_navigationStore);
         }
-
         private void NewItem()
         {
             clearItem();
         }
-
         private void LoadItems()
         {
             using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
@@ -248,7 +339,6 @@ namespace Yakout.ViewModels
 
             }
         }
-
         private string getMaxId()
         {
             string sNewItemId;
@@ -307,7 +397,7 @@ namespace Yakout.ViewModels
 
                             ItemName = table.Rows[0][1].ToString();
 
-                            SelItem = table.Rows[0][2].ToString();
+                            SelectedCategoryId = table.Rows[0][2].ToString();
 
                             Price = table.Rows[0][3].ToString();
 
@@ -329,8 +419,6 @@ namespace Yakout.ViewModels
 
             }
         }
-
-
         private void LoadCategories()
         {
             using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
@@ -345,7 +433,6 @@ namespace Yakout.ViewModels
             }
 
         }
-
         private void OpenFiDi()
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -363,7 +450,6 @@ namespace Yakout.ViewModels
                 
             }
         }
-
         private void clearItem()
         {
             ItemName = "";
@@ -380,7 +466,7 @@ namespace Yakout.ViewModels
 
             ImagePath = "";
 
-            SelItem = "0";
+            SelectedCategoryId = "0";
 
             using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
             {
@@ -420,7 +506,6 @@ namespace Yakout.ViewModels
 
 
         }
-
         private void SaveOrUpdateItem()
         {
             using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
@@ -484,5 +569,6 @@ namespace Yakout.ViewModels
                 }
 
         }
+
     }
 }

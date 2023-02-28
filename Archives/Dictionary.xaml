@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--<StackPanel>
+        <ItemsControl ItemsSource="{Binding SourceCollection}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton Style="{StaticResource btnMainMenu}">
+                        <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
+                            --><!--<fa:ImageAwesome Icon="ShoppingCart" Style="{StaticResource faMainMenu}" />--><!--
+                            <TextBlock Text="{Binding MenuName}" Style="{StaticResource tbMainMenu}" />
+                        </StackPanel>
+
+                    </RadioButton>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>-->
+    
+    
+
+</ResourceDictionary>

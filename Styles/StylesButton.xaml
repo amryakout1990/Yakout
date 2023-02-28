@@ -23,6 +23,75 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <Style x:Key="PosButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Command" Value="{Binding GetCategoryCommand}"/>
+        <Setter Property="Background" Value="{DynamicResource PosButtonBackgroundColor}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="1" CornerRadius="10" Background="{TemplateBinding Background}" Padding="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Blue"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="Background" Value="DodgerBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="ButtonBackStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Command" Value="{Binding GetCategoryCommand}"/>
+        <Setter Property="Background" Value="{DynamicResource ButtonBackBackgroundColor}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="1" CornerRadius="10" Background="{TemplateBinding Background}" Padding="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ButtonBackBackgroundColorMouthOver}"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ButtonBackBackgroundColorMouthCaptured}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ButtonCalculatorStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonCalculatorFontColor}"/>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="Background" Value="{DynamicResource ButtonCalculatorBackgroundColor}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="1" Background="{TemplateBinding Background}" Padding="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Blue"/>
+            </Trigger>
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="Background" Value="DodgerBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="btnSetUp" TargetType="Button" BasedOn="{StaticResource  ButtonStyle}">
         <Setter Property="Margin" Value="10 10 10 0"/>
@@ -98,7 +167,7 @@
                 <ControlTemplate TargetType="RadioButton">
                     <Border BorderThickness="1" CornerRadius="10" Background="{TemplateBinding Background}" 
                             Padding="5">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -149,4 +218,5 @@
         <Setter Property="Margin" Value="10 10 0 10"/>
     </Style>
 
+    
 </ResourceDictionary>

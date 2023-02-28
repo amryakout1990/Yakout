@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace Yakout.Views
 {
     /// <summary>
-    /// Interaction logic for Pos.xaml
+    /// Interaction logic for ButtonItems.xaml
     /// </summary>
-    public partial class Pos : UserControl
+    public partial class ButtonItems : UserControl
     {
-        public Pos()
+        public ButtonItems()
         {
             InitializeComponent();
         }
-
     }
 }

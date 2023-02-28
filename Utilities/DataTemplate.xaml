@@ -48,4 +48,12 @@
     <DataTemplate DataType="{x:Type view:ItemsSelectVM}">
         <view:ItemsSelect/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ButtonCategoriesVM}">
+        <view:ButtonCategories/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ButtonItemsVM}">
+        <view:ButtonItems/>
+    </DataTemplate>
 </ResourceDictionary>

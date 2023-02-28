@@ -4,21 +4,120 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:local="clr-namespace:Yakout.Views"
+             xmlns:local="clr-namespace:Yakout.Utilities"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource user}">
+    <UserControl.Resources>
+        <local:DataTableConverter x:Key="con"/>
+    </UserControl.Resources>
     <Grid>
-        <Canvas>
-            <Button  Margin="10" Style="{StaticResource ButtonStyle}" Width="100" Height="100" >
-                <StackPanel>
-                    <Image Source="/image/gg.png"/>
-                    <TextBlock Text="Point Of Sale" Style="{StaticResource tbPages}"/>
-                </StackPanel>
-            </Button>
-
-            <Button x:Name="btnBack" Click="btnBack_Click" Style="{StaticResource ButtonBack}" Canvas.Right="0" Canvas.Bottom="0"
-                    Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.NavigateMainBackGroundCommand}">
-            </Button>
-        </Canvas>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="0" Style="{StaticResource GridStyle}" ItemsSource="{Binding GridDataView}" 
+                      ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Items" Width="2*"/>
+                    <DataGridTextColumn Header="Qty" Width="*"/>
+                    <DataGridTextColumn Header="Price" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Column="1">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ContentControl Content="{Binding CurrentMenuButtons}"/>
+    
+                </ScrollViewer>
+            </Grid>
+            <Grid Background="White" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Qty}" Height="50" Style="{StaticResource TextBlockStyle}"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Content="7" Command="{Binding Calculator7Command}" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="8" Command="{Binding Calculator8Command}" Grid.Column="1" Grid.Row="0" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="9" Command="{Binding Calculator9Command}" Grid.Column="2" Grid.Row="0" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="4" Command="{Binding Calculator4Command}" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="5" Command="{Binding Calculator5Command}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="6" Command="{Binding Calculator6Command}" Grid.Column="2" Grid.Row="1" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="1" Command="{Binding Calculator1Command}" Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="2" Command="{Binding Calculator2Command}" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="3" Command="{Binding Calculator3Command}" Grid.Column="2" Grid.Row="2" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="0" Command="{Binding Calculator0Command}" Grid.Column="0" Grid.Row="3" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="." Command="{Binding CalculatorPointCommand}" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonCalculatorStyle}"/>
+                    <Button Content="C" Command="{Binding CalculatorClearCommand}" Grid.Column="2" Grid.Row="3" Style="{StaticResource ButtonCalculatorStyle}"/>
+                </Grid>
+                <TextBlock Grid.Row="2" Height="50"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Total"/>
+                <TextBox Grid.Column="1" Height="50" VerticalAlignment="Top" />
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Payment"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Paid"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Change"/>
+                <ComboBox Grid.Row="0" Grid.Column="1"/>
+                <TextBox Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Background="White"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Content="Pay" Grid.Row="0" Grid.Column="0" Command="{Binding GetCategoryCommand}"/>
+                <Button Content="Remove" Grid.Row="0" Grid.Column="1"/>
+                <Button Content="Cancel" Grid.Row="0" Grid.Column="2"/>
+                <Button Content="Print" Grid.Row="1" Grid.Column="0"/>
+                <Button Content="Clear" Grid.Row="1" Grid.Column="1"/>
+                <Button Content="Close" Grid.Row="1" Grid.Column="2"/>
+            </Grid>
+            </Grid>
     </Grid>
 </UserControl>

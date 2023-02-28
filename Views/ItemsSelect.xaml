@@ -19,10 +19,10 @@
             </Grid.ColumnDefinitions>
             <Label Content="Item Name" Style="{StaticResource labelStyle}" Margin="20 20 20 0"/>
             <TextBox Grid.Column="1" Style="{StaticResource textboxStyle}"
-                     Margin="0 20 20 0" Name="tb" />
+                     Margin="0 20 20 0" Text="{Binding Path=FilterTextBox}" />
             <Button Grid.Column="2" VerticalAlignment="Bottom"  x:Name="btnBack"  
                     Style="{StaticResource ButtonBack}" Width="75" Height="75" 
-                    Command="{Binding NavigateUsersCommandBack}">
+                    Command="{Binding NavigateItemsCommand}">
 
                 <StackPanel>
                 </StackPanel>
@@ -30,21 +30,29 @@
 
         </Grid>
         <Grid Grid.Row="1">
-            <DataGrid Name="gridUserSelect" 
+            <DataGrid  
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
                       Style="{StaticResource GridStyle}"
-                      ItemsSource="{Binding Path=table_users}"
-                      SelectedItem="{Binding Selected_User}">
+                      ItemsSource="{Binding Path=DataViewGrid,UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding row}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Item Name" Binding="{Binding userName}"/>
-                    <DataGridTextColumn Header="Category Name" Binding="{Binding password}"/>
-                    <DataGridTextColumn Header="Price" Binding="{Binding fullName}"/>
-                    <DataGridTextColumn Header="Notes" Binding="{Binding jobDes}"/>
-                    <DataGridTemplateColumn Header="Image"/>
+                    <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}"/>
+                    <DataGridTextColumn Header="Category Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
+                    <DataGridTemplateColumn Header="Image">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="1" BorderBrush="Black" Width="50" Height="50">
+                                    <Image Source="{Binding Path=Image}"/>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
                 <DataGrid.InputBindings>
                     <MouseBinding Gesture="LeftDoubleClick"
-                        Command="{Binding NavigateUsersAfterSelection}"/>
+                        Command="{Binding NavigateItemsAfterSelectionCommand}"/>
                 </DataGrid.InputBindings>
             </DataGrid>
 

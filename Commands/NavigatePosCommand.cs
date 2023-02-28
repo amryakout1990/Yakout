@@ -21,7 +21,8 @@ namespace Yakout.Commands
 
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new PosVM();
+            _navigationStore.CurrentViewModel = new PosVM(_navigationStore);
+
         }
 
     }

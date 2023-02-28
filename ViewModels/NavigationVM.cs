@@ -118,22 +118,22 @@ namespace Yakout.ViewModels
         //}
 
         ///Pos Page///
-        private void Pos(object ooo) => CurrentView = new PosVM();
+        //private void Pos(object ooo) => CurrentView = new PosVM();
 
-        private ICommand _PosCommand;
+        //private ICommand _PosCommand;
 
-        public ICommand PosCommand
-        {
-            get
-            {
-                if (_PosCommand == null)
-                {
-                    _PosCommand = new RelayCommand(Pos);
-                }
-                return _PosCommand;
-            }
-            set { _PosCommand = value; OnPropertyChanged(); }
-        }
+        //public ICommand PosCommand
+        //{
+        //    get
+        //    {
+        //        if (_PosCommand == null)
+        //        {
+        //            _PosCommand = new RelayCommand(Pos);
+        //        }
+        //        return _PosCommand;
+        //    }
+        //    set { _PosCommand = value; OnPropertyChanged(); }
+        //}
 
         ///Reports///
         private void Reports(object ooo) => CurrentView = new ReportsVM();

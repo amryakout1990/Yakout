@@ -106,11 +106,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Archives\Class.cs" />
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Commands\NavigateUsersAfterSelectionCommand.cs" />
     <Compile Include="Commands\NavigateUsersAfterSelectionCommandMethod.cs" />
     <Compile Include="Commands\UsersButtonsCommand.cs" />
     <Compile Include="Archives\UsersSave.cs" />
+    <Compile Include="Models\ItemStore.cs" />
+    <Compile Include="Models\MainModel.cs" />
+    <Compile Include="Archives\SelectedItemStore.cs" />
+    <Compile Include="Stores\SelectedStore.cs" />
+    <Compile Include="Utilities\DataTableConverter.cs" />
     <Compile Include="Utilities\NavigateCommand.cs" />
     <Compile Include="Commands\NavigateMainBackGroundCommand.cs" />
     <Compile Include="Commands\NavigatePosCommand.cs" />
@@ -123,7 +129,10 @@
     <Compile Include="Utilities\NavigationService.cs" />
     <Compile Include="Utilities\ParameterNavigationService.cs" />
     <Compile Include="Archives\RelayCommand.cs" />
+    <Compile Include="Utilities\SetError.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ButtonCategoriesVM.cs" />
+    <Compile Include="ViewModels\ButtonItemsVM.cs" />
     <Compile Include="ViewModels\CategoriesVM.cs" />
     <Compile Include="ViewModels\ItemsVM.cs" />
     <Compile Include="ViewModels\MainBackGroundVM.cs" />
@@ -136,6 +145,12 @@
     <Compile Include="ViewModels\SetUpVM.cs" />
     <Compile Include="ViewModels\UserSelectVM.cs" />
     <Compile Include="ViewModels\UsersVM.cs" />
+    <Compile Include="Views\ButtonCategories.xaml.cs">
+      <DependentUpon>ButtonCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ButtonItems.xaml.cs">
+      <DependentUpon>ButtonItems.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Categories.xaml.cs">
       <DependentUpon>Categories.xaml</DependentUpon>
     </Compile>
@@ -170,6 +185,10 @@
     <Compile Include="Views\UserSelect.xaml.cs">
       <DependentUpon>UserSelect.xaml</DependentUpon>
     </Compile>
+    <Page Include="Archives\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -227,6 +246,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Utilities\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ButtonItems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

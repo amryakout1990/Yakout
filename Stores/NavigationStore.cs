@@ -30,5 +30,27 @@ namespace Yakout.Stores
         }
 
         public event Action CurrentViewModelChanged;
+
+
+
+        private ViewModelBase _CurrentMenuButtons;
+
+        public ViewModelBase CurrentMenuButtons
+        {
+            get { return _CurrentMenuButtons; }
+            set {
+                _CurrentMenuButtons?.Dispose();
+                  _CurrentMenuButtons = value;
+                OnCurrentMenuButtonsChanged();
+            }
+        }
+
+        private void OnCurrentMenuButtonsChanged()
+        {
+            CurrentMenuButtonsChanged?.Invoke();
+        }
+
+        public event Action CurrentMenuButtonsChanged;
+
     }
 }
