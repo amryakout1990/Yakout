@@ -6,7 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Yakout.Views"
         xmlns:v="clr-namespace:Yakout.Views"
-        xmlns:local="clr-namespace:Yakout.Views" xmlns:viewmodels="clr-namespace:Yakout.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SetUpVM}"
+        xmlns:local="clr-namespace:Yakout.Views"
+        xmlns:viewmodels="clr-namespace:Yakout.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:SetUpVM}"
         mc:Ignorable="d"
         Title="MainWindow" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" >
     <!--<Window.DataContext>

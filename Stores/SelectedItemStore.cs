@@ -24,18 +24,19 @@ namespace Yakout.Stores
             set
             {
                 _SelectedItem = value;
-                OnSelectedItemChanged();
+                /// ممكن نكتب الحدث بدون ميثود
+                /// لما القيمة تتغير
+                /// بيعمل فيرنج للحدث
+                /// و دا بستغلة في عمل ريفريش للخصائص المربوطة
+                /// و اقدر انشط البروبيرتي تشانج الموجدة في الفيو مودل بيز
+                 SelectedItemChanged?.Invoke();
             }
-        }
-
-        private void OnSelectedItemChanged()
-        {
-            SelectedItemChanged?.Invoke();
         }
 
         public event Action SelectedItemChanged;
 
         //when firing it  will grap the property
+
     }
 
 }

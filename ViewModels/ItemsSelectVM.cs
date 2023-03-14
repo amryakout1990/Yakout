@@ -22,7 +22,7 @@ namespace Yakout.Views
         private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
 
 
-        public bool HasErrors => throw new NotImplementedException();
+        public bool HasErrors => false;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
@@ -103,11 +103,11 @@ namespace Yakout.Views
         public ICommand NavigateItemsAfterSelectionCommand { get; private set; }
 
 
-        public ItemsSelectVM(NavigationStore navigationStore, SelectedItemStore selectedItemStore)
+        public ItemsSelectVM(NavigationStore navigationStore)
         {
             LoadItems();
             _navigationStore = navigationStore;
-            _selectedItemStore = selectedItemStore;
+            _selectedItemStore = new SelectedItemStore();
             NavigateItemsCommand = new ActionCommand(NavigateItems);
             NavigateItemsAfterSelectionCommand = new ActionCommand(NavigateItemsAfterSelection);
 

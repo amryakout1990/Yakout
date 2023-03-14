@@ -80,4 +80,17 @@ namespace Yakout.Archives
             }
         }
     }
+
+    //private ObservableCollection<Button> menuButtons;
+
+    //private CollectionViewSource _MenuItemsCollection;
+    //public CollectionViewSource MenuItemsCollection
+    //{
+    //    get { return _MenuItemsCollection; }
+    //    set { _MenuItemsCollection = value; OnPropertyChanged(); }
+    //}
+
+    //public ICollectionView SourceCollection => MenuItemsCollection.View;
+    //menuButtons = new ObservableCollection<Button>();
+
 }

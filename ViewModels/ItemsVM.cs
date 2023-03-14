@@ -253,7 +253,7 @@ namespace Yakout.ViewModels
 
         private void NavigateItemsSelect()
         {
-            _navigationStore.CurrentViewModel=new ItemsSelectVM(_navigationStore,_selectedItemStore);
+            _navigationStore.CurrentViewModel=new ItemsSelectVM(_navigationStore);
 
         }
         private void first()

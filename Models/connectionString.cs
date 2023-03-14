@@ -8,6 +8,6 @@ namespace Yakout.Models
 {
     public class connectionString
     {
-        public static string cs = @"Data Source=AMR\SQLEXPRESS;Initial Catalog=YakoutPOS;Integrated Security=True";
+        public static string cs = @"Data Source=.\SQLEXPRESS;Initial Catalog=YakoutPOS;Integrated Security=True";
     }
 }

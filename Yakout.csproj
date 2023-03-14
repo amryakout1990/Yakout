@@ -28,7 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -114,7 +114,9 @@
     <Compile Include="Archives\UsersSave.cs" />
     <Compile Include="Models\ItemStore.cs" />
     <Compile Include="Models\MainModel.cs" />
-    <Compile Include="Archives\SelectedItemStore.cs" />
+    <Compile Include="Models\PosStore.cs" />
+    <Compile Include="Stores\SelectedItemStore.cs" />
+    <Compile Include="Stores\SelectedPosStore.cs" />
     <Compile Include="Stores\SelectedStore.cs" />
     <Compile Include="Utilities\DataTableConverter.cs" />
     <Compile Include="Utilities\NavigateCommand.cs" />
@@ -131,8 +133,9 @@
     <Compile Include="Archives\RelayCommand.cs" />
     <Compile Include="Utilities\SetError.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
-    <Compile Include="ViewModels\ButtonCategoriesVM.cs" />
-    <Compile Include="ViewModels\ButtonItemsVM.cs" />
+    <Compile Include="Archives\ButtonCategoriesVM.cs" />
+    <Compile Include="Archives\ButtonItemsVM.cs" />
+    <Compile Include="ViewModels\CalculatorVM.cs" />
     <Compile Include="ViewModels\CategoriesVM.cs" />
     <Compile Include="ViewModels\ItemsVM.cs" />
     <Compile Include="ViewModels\MainBackGroundVM.cs" />
@@ -140,16 +143,21 @@
     <Compile Include="ViewModels\NavigationVM.cs" />
     <Compile Include="ViewModels\OptionsVM.cs" />
     <Compile Include="ViewModels\PaymentsVM.cs" />
+    <Compile Include="ViewModels\PosButtonsVM.cs" />
     <Compile Include="ViewModels\PosVM.cs" />
     <Compile Include="ViewModels\ReportsVM.cs" />
     <Compile Include="ViewModels\SetUpVM.cs" />
+    <Compile Include="ViewModels\tVM.cs" />
     <Compile Include="ViewModels\UserSelectVM.cs" />
     <Compile Include="ViewModels\UsersVM.cs" />
-    <Compile Include="Views\ButtonCategories.xaml.cs">
+    <Compile Include="Archives\ButtonCategories.xaml.cs">
       <DependentUpon>ButtonCategories.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ButtonItems.xaml.cs">
+    <Compile Include="Archives\ButtonItems.xaml.cs">
       <DependentUpon>ButtonItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Calculator.xaml.cs">
+      <DependentUpon>Calculator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Categories.xaml.cs">
       <DependentUpon>Categories.xaml</DependentUpon>
@@ -173,11 +181,17 @@
     <Compile Include="Views\Pos.xaml.cs">
       <DependentUpon>Pos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PosButtons.xaml.cs">
+      <DependentUpon>PosButtons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SetUp.xaml.cs">
       <DependentUpon>SetUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\t.xaml.cs">
+      <DependentUpon>t.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
@@ -249,11 +263,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ButtonCategories.xaml">
+    <Page Include="Archives\ButtonCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ButtonItems.xaml">
+    <Page Include="Archives\ButtonItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Calculator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -285,11 +303,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PosButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Reports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SetUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\t.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

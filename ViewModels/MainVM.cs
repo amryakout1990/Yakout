@@ -21,6 +21,10 @@ namespace Yakout.ViewModels
 
         private readonly NavigationStore _navigationStore;
 
+        private SelectedStore selectedStore;
+
+        private readonly SelectedItemStore _selectedItemStore;
+
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
         public ICommand NavigateUsersCommand { get; }
@@ -38,6 +42,7 @@ namespace Yakout.ViewModels
 
             _navigationStore = navigationStore;
 
+            _selectedItemStore = new SelectedItemStore();
 
             _navigationStore.CurrentViewModelChanged += _navigationStore_CurrentViewModelChanged;
 
@@ -45,8 +50,8 @@ namespace Yakout.ViewModels
             /// the command take the old value from constructor of the mainVM
             /// then command setting the new value to new usersVM
             ///then making update to the new value by firing the event and onproperty changed
-
-            NavigatePosCommand = new NavigatePosCommand( navigationStore);
+        
+            NavigatePosCommand = new NavigatePosCommand( navigationStore, _selectedItemStore);
 
             NavigateSetUPCommand = new NavigateCommand<SetUpVM>(new NavigationService<SetUpVM>(navigationStore, () => new SetUpVM(_navigationStore)));
 

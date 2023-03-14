@@ -24,13 +24,8 @@ namespace Yakout.Stores
             set
             {
                 _SelectedPropertyStore = value;
-                OnSelectedCategoryStoreChanged();
+                SelectedPropertyStoreChanged?.Invoke();
             }
-        }
-
-        private void OnSelectedCategoryStoreChanged()
-        {
-            SelectedPropertyStoreChanged?.Invoke();
         }
 
         public event Action SelectedPropertyStoreChanged;
@@ -53,13 +48,31 @@ namespace Yakout.Stores
             get { return _ItemId; }
             set { _ItemId = value; }
         }
-        private DataView _GridDataView;
 
-        public DataView GridDataView
+        private string _itemName;
+
+        public string ItemName
         {
-            get { return _GridDataView; }
-            set { _GridDataView = value; }
+            get { return _itemName; }
+            set { _itemName = value; }
         }
+        private string _price;
+
+        public string Price
+        {
+            get { return _price; }
+            set { _price = value; }
+        }
+
+
+        private DataTable _gridDataTable;
+
+        public DataTable GridDataTable
+        {
+            get { return _gridDataTable; }
+            set { _gridDataTable = value; }
+        }
+
 
     }
 

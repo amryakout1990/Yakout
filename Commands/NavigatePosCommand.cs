@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +15,18 @@ namespace Yakout.Commands
     {
         private readonly NavigationStore _navigationStore;
 
-        public NavigatePosCommand(NavigationStore navigationStore)
+        private readonly SelectedItemStore _selectedItemStore;
+
+        public NavigatePosCommand(NavigationStore navigationStore, SelectedItemStore selectedItemStore)
         {
             _navigationStore = navigationStore;
+
+            _selectedItemStore = selectedItemStore;
         }
 
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new PosVM(_navigationStore);
+            _navigationStore.CurrentViewModel = new PosVM(_navigationStore, _selectedItemStore);
 
         }
 

@@ -8,54 +8,19 @@ namespace Yakout.Models
 {
     public class ItemStore
     {
-        private int _ItemId;
+        public int ItemId { get; set; }
 
-        public int ItemId
-        {
-            get { return _ItemId; }
-            set { _ItemId = value; }
-        }
+        public string ItemName { get; set; }
 
-        private string _ItemName;
-        public string ItemName
-        {
-            get { return _ItemName; }
-            set { _ItemName = value; }
-        }
-        private int _CategoryId;
-        public int CategoryId
-        {
-            get { return _CategoryId; }
-            set { _CategoryId = value; }
-        }
+        public string Price { get; set; }
 
-        private string _CategoryName;
-        public string CategoryName
-        {
-            get { return _CategoryName; }
-            set { _CategoryName = value; }
-        }
-        private string _Price;
-        public string Price
-        {
-            get { return _Price; }
-            set { _Price = value; }
-        }
+        public byte[] Image { get; set; }
 
-        private string _Notes;
-        public string Notes
-        {
-            get { return _Notes; }
-            set { _Notes = value; }
-        }
-        private byte[] _Image;
+        public int CategoryId { get; set; }
 
-        public byte[] Image
-        {
-            get { return _Image; }
-            set { _Image = value; }
-        }
+        public string CategoryName { get; set; }
 
+        public string Notes { get; set; }
 
     }
 

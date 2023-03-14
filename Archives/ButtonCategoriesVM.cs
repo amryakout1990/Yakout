@@ -21,13 +21,14 @@ namespace Yakout.ViewModels
     class ButtonCategoriesVM:Utilities.ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
+        private readonly SelectedItemStore _selectedItemStore;
         private ObservableCollection<Button> menuButtons;
         private CollectionViewSource MenuItemsCollection;
         public ICollectionView SourceCollection => MenuItemsCollection.View;
         private Button menuButton;
+
         private DataTable _table;
         private ICommand ShowItemsByCategoryIdCommand { get; }
-        private SelectedStore _selectedStore;
 
         private SqlCommand _command;
 
@@ -43,22 +44,12 @@ namespace Yakout.ViewModels
             set { _table = value; OnPropertyChanged(nameof(Table)); }
         }
 
-        public ButtonCategoriesVM(NavigationStore navigationStore)
+        public ButtonCategoriesVM(NavigationStore navigationStore, SelectedItemStore selectedItemStore)
         {
             _navigationStore = navigationStore;
-            _selectedStore = new SelectedStore();
-            //ShowItemsByCategoryIdCommand = new ActionCommand(ShowItemsByCategoryId);
-
+            _selectedItemStore = selectedItemStore;
             FillCategoriesIntoButtons();
-
         }
-
-        //private void ShowItemsByCategoryId()
-        //{
-
-
-        //    _navigationStore.CurrentMenuButtons = new ButtonItemsVM(_navigationStore,_selectedStore);
-        //}
 
         private DataTable GetCategoriesFromDatabase()
         {
@@ -76,7 +67,6 @@ namespace Yakout.ViewModels
                 }
             }
         }
-
         private void FillCategoriesIntoButtons()
         {
             using (Table = new DataTable())
@@ -88,11 +78,9 @@ namespace Yakout.ViewModels
                 {
                     menuButton = new Button();
                     menuButton.Content = Table.Rows[i][1].ToString();
-                    menuButton.Width = 100;
-                    menuButton.Height = 100;
                     menuButton.Tag = Table.Rows[i][0].ToString();
                     menuButton.Name = "btn" + Table.Rows[i][1].ToString();
-                    menuButton.Style = (Style)menuButton.FindResource("PosButtonStyle");
+                    menuButton.Style = (Style)menuButton.FindResource("PosCategoriesButtonStyle");
                     menuButton.Click += MenuButton_Click;
                     menuButton.Command =ShowItemsByCategoryIdCommand;
                     menuButtons.Add(menuButton);
@@ -105,10 +93,8 @@ namespace Yakout.ViewModels
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            _selectedStore.SelectedPropertyStore.CategoryId = btn.Tag.ToString();
-            _navigationStore.CurrentMenuButtons = new ButtonItemsVM(_navigationStore, _selectedStore);
-
-
+            _selectedItemStore.SelectedItem.CategoryId =Convert.ToInt32( btn.Tag.ToString());
+            //_navigationStore.CurrentMenuButtons = new ButtonItemsVM(_navigationStore, _selectedItemStore);
         }
 
 

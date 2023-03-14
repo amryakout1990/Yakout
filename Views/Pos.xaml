@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:local="clr-namespace:Yakout.Utilities"
+             xmlns:local="clr-namespace:Yakout.Utilities" 
+             xmlns:views="clr-namespace:Yakout.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource user}">
     <UserControl.Resources>
@@ -20,55 +21,47 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <DataGrid Grid.Column="0" Style="{StaticResource GridStyle}" ItemsSource="{Binding GridDataView}" 
+            <DataGrid Grid.Column="0" Style="{StaticResource GridStyle}"
+                      ItemsSource="{Binding GridBoundDataTable}" 
                       ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Items" Width="2*"/>
-                    <DataGridTextColumn Header="Qty" Width="*"/>
-                    <DataGridTextColumn Header="Price" Width="*"/>
+                    <DataGridTextColumn Header="Items" Width="2*" Binding="{Binding ItemName}"/>
+                    <DataGridTemplateColumn Header="Qty" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="1"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Grid Grid.Column="1">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ContentControl Content="{Binding CurrentMenuButtons}"/>
-    
-                </ScrollViewer>
-            </Grid>
-            <Grid Background="White" Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="{Binding Qty}" Height="50" Style="{StaticResource TextBlockStyle}"/>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Button Content="7" Command="{Binding Calculator7Command}" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="8" Command="{Binding Calculator8Command}" Grid.Column="1" Grid.Row="0" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="9" Command="{Binding Calculator9Command}" Grid.Column="2" Grid.Row="0" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="4" Command="{Binding Calculator4Command}" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="5" Command="{Binding Calculator5Command}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="6" Command="{Binding Calculator6Command}" Grid.Column="2" Grid.Row="1" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="1" Command="{Binding Calculator1Command}" Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="2" Command="{Binding Calculator2Command}" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="3" Command="{Binding Calculator3Command}" Grid.Column="2" Grid.Row="2" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="0" Command="{Binding Calculator0Command}" Grid.Column="0" Grid.Row="3" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="." Command="{Binding CalculatorPointCommand}" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonCalculatorStyle}"/>
-                    <Button Content="C" Command="{Binding CalculatorClearCommand}" Grid.Column="2" Grid.Row="3" Style="{StaticResource ButtonCalculatorStyle}"/>
-                </Grid>
-                <TextBlock Grid.Row="2" Height="50"/>
-            </Grid>
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="2 2 0 0">
+                <ItemsControl  ItemsSource="{Binding SourceCollection,UpdateSourceTrigger=PropertyChanged}" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+            <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" Padding="2 2 0 0">
+                <ItemsControl  ItemsSource="{Binding SourceCollection2}" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!--<Grid Grid.Column="1">
+                <ContentControl Content="{Binding CurrentMenuButtons}"/>
+            </Grid>-->
+            <!--<views:PosButtons Grid.Column="1" DataContext="{Binding PosButtonsVM}" />
+            <views:Calculator Grid.Column="2" DataContext="{Binding CalculatorVM}"/>-->
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -82,7 +75,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Total"/>
-                <TextBox Grid.Column="1" Height="50" VerticalAlignment="Top" />
+                <TextBlock Grid.Column="1" Height="50" VerticalAlignment="Top"
+                         Text="{Binding ItemId}"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -111,7 +105,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Content="Pay" Grid.Row="0" Grid.Column="0" Command="{Binding GetCategoryCommand}"/>
+                <Button Content="Pay" Grid.Row="0" Grid.Column="0" Command="{Binding test}"/>
                 <Button Content="Remove" Grid.Row="0" Grid.Column="1"/>
                 <Button Content="Cancel" Grid.Row="0" Grid.Column="2"/>
                 <Button Content="Print" Grid.Row="1" Grid.Column="0"/>

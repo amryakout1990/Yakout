@@ -10,12 +10,12 @@ namespace Yakout.Utilities
 {
     public class ViewModelBase : INotifyPropertyChanged,IDisposable
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string PropName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropName));
         }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public virtual void Dispose() { }
 
