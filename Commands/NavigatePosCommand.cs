@@ -22,11 +22,13 @@ namespace Yakout.Commands
             _navigationStore = navigationStore;
 
             _selectedItemStore = selectedItemStore;
+
         }
 
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new PosVM(_navigationStore, _selectedItemStore);
+
+            _navigationStore.CurrentViewModel = new PosVM(_navigationStore);
 
         }
 

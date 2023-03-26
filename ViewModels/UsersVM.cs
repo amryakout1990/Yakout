@@ -114,67 +114,25 @@ namespace Yakout.ViewModels
 
         public ICommand NavigateSetUpCommand { get; }
         public ICommand NavigateUsersSelectCommand { get; }
-
         public ICommand UsersNewButtonCommand => new UsersButtonsCommand(NewButton);
+        public ICommand UsersSaveButtonCommand => new UsersButtonsCommand(getDataSave);
         public ICommand UsersFirstButtonCommand => new UsersButtonsCommand(getDataFirst);
         public ICommand UsersBackButtonCommand => new UsersButtonsCommand(getDataBack);
         public ICommand UsersNextButtonCommand => new UsersButtonsCommand(getDataNext);
         public ICommand UsersLastButtonCommand => new UsersButtonsCommand(getDataLast);
 
-        public UsersVM(NavigationStore navigationStore)
-        {
-            _navigationStore = navigationStore;
 
-            index = 1;
-
-            table = new DataTable();
-            using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users where id=" +index + "", connection))
-                {
-                    table = new DataTable();
-                    adapter.Fill(table);
-                    if (table.Rows.Count > 0)
-                    {
-                        UserName = table.Rows[0][1].ToString();
-                        Password = table.Rows[0][2].ToString();
-                        FullName = table.Rows[0][3].ToString();
-                        JobDes = table.Rows[0][4].ToString();
-                        Email = table.Rows[0][5].ToString();
-                        Phone = table.Rows[0][6].ToString();
-
-                    }
-                    else
-                    {
-                        UserName = "";
-                        Password = "";
-                        FullName = "";
-                        JobDes = "";
-                        Email = "";
-                        Phone = "";
-                    }
-
-                }
-            }
-
-            NavigateSetUpCommand = new NavigateCommand<SetUpVM>(new NavigationService<SetUpVM>(navigationStore, () => new SetUpVM(_navigationStore)));
-           
-            NavigateUsersSelectCommand = new NavigateCommand<UserSelectVM>(new NavigationService<UserSelectVM>(navigationStore, () => new UserSelectVM(_navigationStore)));
-
-            
-        }
         public UsersVM(NavigationStore navigationStore, SelectedUserStore selectedUserStore)
         {
             _navigationStore = navigationStore;
             _selectedUserStore = selectedUserStore;
-
+            index = _selectedUserStore.SelectedUser.id;
             UserName = _selectedUserStore.SelectedUser.UserName;
             Password = _selectedUserStore.SelectedUser.Password;
             FullName = _selectedUserStore.SelectedUser.FullName;
             JobDes = _selectedUserStore.SelectedUser.JobDes;
             Email = _selectedUserStore.SelectedUser.Email;
             Phone = _selectedUserStore.SelectedUser.Phone;
-
             NavigateSetUpCommand = new NavigateCommand<SetUpVM>(new NavigationService<SetUpVM>(navigationStore, () => new SetUpVM(_navigationStore)));
 
             NavigateUsersSelectCommand = new NavigateCommand<UserSelectVM>(new NavigationService<UserSelectVM>(navigationStore, () => new UserSelectVM(_navigationStore)));
@@ -196,89 +154,102 @@ namespace Yakout.ViewModels
 
         private void getDataSave(object ooo)
         {
-            if (index != 0)
+            using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
             {
-                using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
+                if (index == 0)
                 {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter("select max(id)+1 from Users", connection))
+                    using (SqlDataAdapter adapter = new SqlDataAdapter("select max (id) from Users", connection))
                     {
                         table = new DataTable();
                         adapter.Fill(table);
-                        int id;
-                         New_id = table.Rows[0][0].ToString();
-                        if (string.IsNullOrEmpty(New_id))
+                        int id=Convert.ToInt32( table.Rows[0][0].ToString());
+                        if (string.IsNullOrEmpty(id.ToString()))
                         {
-                            id = 1;
-                            inOrUpdate(connection, id);
+                            id =1;
+                            using (command = new SqlCommand("", connection))
+                            {
+                                command.CommandText = "insert into Users values(@1,@2,@3,@4,@5,@6,@7)";
+                                command.Parameters.Clear();
+                                command.Parameters.Add("@1", SqlDbType.Int).Value = id;
+                                command.Parameters.Add("@2", SqlDbType.NVarChar).Value = UserName;
+                                command.Parameters.Add("@3", SqlDbType.NVarChar).Value = Password;
+                                command.Parameters.Add("@4", SqlDbType.NVarChar).Value = FullName;
+                                command.Parameters.Add("@5", SqlDbType.NVarChar).Value = JobDes;
+                                command.Parameters.Add("@6", SqlDbType.NVarChar).Value = Email;
+                                command.Parameters.Add("@7", SqlDbType.NVarChar).Value = Phone;
+                                connection.Open();
+                                command.ExecuteNonQuery();
+                                MessageBox.Show("Saved Successfuly");
+                                index = 0;
+                                UserName = "";
+                                Password = "";
+                                FullName = "";
+                                JobDes = "";
+                                Email = "";
+                                Phone = "";
+
+                            }
                         }
                         else
                         {
-                            id = Convert.ToInt32(New_id);
-                            inOrUpdate(connection, id);
+                            id++;
+                            using (command = new SqlCommand("", connection))
+                            {
+                                command.CommandText = "insert into Users values(@1,@2,@3,@4,@5,@6,@7)";
+                                command.Parameters.Clear();
+                                command.Parameters.Add("@1", SqlDbType.Int).Value = id;
+                                command.Parameters.Add("@2", SqlDbType.NVarChar).Value = UserName;
+                                command.Parameters.Add("@3", SqlDbType.NVarChar).Value = Password;
+                                command.Parameters.Add("@4", SqlDbType.NVarChar).Value = FullName;
+                                command.Parameters.Add("@5", SqlDbType.NVarChar).Value = JobDes;
+                                command.Parameters.Add("@6", SqlDbType.NVarChar).Value = Email;
+                                command.Parameters.Add("@7", SqlDbType.NVarChar).Value = Phone;
+                                connection.Open();
+                                command.ExecuteNonQuery();
+                                MessageBox.Show("Saved Successfuly");
+                                index = 0;
+                                UserName = "";
+                                Password = "";
+                                FullName = "";
+                                JobDes = "";
+                                Email = "";
+                                Phone = "";
+
+                            }
                         }
 
                     }
 
-
-                }
-
-            }
-            else
-            {
-                using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
-                {
-                    inOrUpdate(connection, index);
-                }
-            }
-
-        }
-        private void inOrUpdate(SqlConnection connection, int id)
-        {
-            using (command = new SqlCommand("", connection))
-            {
-                if (index==0)
-                {
-                    using (command = new SqlCommand("", connection))
-                    {
-                    command.CommandText = "insert into Users values(@1,@2,@3,@4,@5,@6,@7)";
-                    command.Parameters.Clear();
-                    command.Parameters.Add("@1", SqlDbType.Int).Value = id;
-                    command.Parameters.Add("@2", SqlDbType.NVarChar).Value = UserName;
-                    command.Parameters.Add("@3", SqlDbType.NVarChar).Value = Password;
-                    command.Parameters.Add("@4", SqlDbType.NVarChar).Value = FullName;
-                    command.Parameters.Add("@5", SqlDbType.NVarChar).Value = JobDes;
-                    command.Parameters.Add("@6", SqlDbType.NVarChar).Value = Email;
-                    command.Parameters.Add("@7", SqlDbType.NVarChar).Value = Phone;
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Saved Successfuly");
-                    }
                 }
                 else
                 {
                     using (command = new SqlCommand("", connection))
                     {
-                    command.CommandText = "update Users set userName = @2 , password =@3 , fullName = @4 , jobDes = @5 , email = @6 , phone = @7 where id = " +Convert.ToInt32(index) +"";
-                    command.Parameters.Clear();
-                    command.Parameters.Add("@2", SqlDbType.NVarChar).Value = UserName;
-                    command.Parameters.Add("@3", SqlDbType.NVarChar).Value = Password;
-                    command.Parameters.Add("@4", SqlDbType.NVarChar).Value = FullName;
-                    command.Parameters.Add("@5", SqlDbType.NVarChar).Value = JobDes;
-                    command.Parameters.Add("@6", SqlDbType.NVarChar).Value = Email;
-                    command.Parameters.Add("@7", SqlDbType.NVarChar).Value = Phone;
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("updated Successfuly");
-                    }
+                        command.CommandText = "update Users set userName = @2 , password =@3 , fullName = @4 , jobDes = @5 , email = @6 , phone = @7 where id = " + Convert.ToInt32(index) + "";
+                        command.Parameters.Clear();
+                        command.Parameters.Add("@2", SqlDbType.NVarChar).Value = UserName;
+                        command.Parameters.Add("@3", SqlDbType.NVarChar).Value = Password;
+                        command.Parameters.Add("@4", SqlDbType.NVarChar).Value = FullName;
+                        command.Parameters.Add("@5", SqlDbType.NVarChar).Value = JobDes;
+                        command.Parameters.Add("@6", SqlDbType.NVarChar).Value = Email;
+                        command.Parameters.Add("@7", SqlDbType.NVarChar).Value = Phone;
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("updated Successfuly");
 
+                    }
                 }
+
+
+
             }
+
+
         }
 
         private void NewButton(object ooo)
         {
             index = 0;
-
             UserName = "";
             Password = "";
             FullName = "";
@@ -318,24 +289,21 @@ namespace Yakout.ViewModels
             {
                 table = new DataTable();
                 adapter.Fill(table);
-                index = table.Rows.Count;
-                using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
+                index = table.Rows.Count-1;
+                using (SqlDataAdapter adapter1 = new SqlDataAdapter("select * from Users where id=" + index + "", Models.connectionString.cs))
                 {
-                    using (SqlDataAdapter adapter1 = new SqlDataAdapter("select * from Users where id=" + index + "", connection))
+                    table = new DataTable();
+                    adapter1.Fill(table);
+                    if (table.Rows.Count > 0)
                     {
-                        table = new DataTable();
-                        adapter1.Fill(table);
-                        if (table.Rows.Count > 0)
-                        {
-                            UserName = table.Rows[0][1].ToString();
-                            Password = table.Rows[0][2].ToString();
-                            FullName = table.Rows[0][3].ToString();
-                            JobDes = table.Rows[0][4].ToString();
-                            Email = table.Rows[0][5].ToString();
-                            Phone = table.Rows[0][6].ToString();
-                        }
-
+                        UserName = table.Rows[0][1].ToString();
+                        Password = table.Rows[0][2].ToString();
+                        FullName = table.Rows[0][3].ToString();
+                        JobDes = table.Rows[0][4].ToString();
+                        Email = table.Rows[0][5].ToString();
+                        Phone = table.Rows[0][6].ToString();
                     }
+
                 }
             }
 

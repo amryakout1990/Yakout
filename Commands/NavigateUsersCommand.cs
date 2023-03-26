@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +17,12 @@ namespace Yakout.Commands
 
         private readonly SelectedUserStore _selectedUserStore;
 
-        public NavigateUsersCommand(SelectedUserStore selectedUserStore)
+        public NavigateUsersCommand(SelectedUserStore selectedUserStore, NavigationStore navigationStore)
         {
-            //_navigationStore = navigationStore;
+            _navigationStore = navigationStore;
             _selectedUserStore = selectedUserStore;
+
+
         }
 
         public override void Execute(object parameter)
@@ -26,6 +30,5 @@ namespace Yakout.Commands
             _navigationStore.CurrentViewModel = new UsersVM(_navigationStore,_selectedUserStore);
         }
         
-        //NavigationStore navigationStore
     }
 }

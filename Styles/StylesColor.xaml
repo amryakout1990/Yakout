@@ -4,8 +4,10 @@
     <SolidColorBrush x:Key="userColor" Color="LightCoral"/>
 
     <SolidColorBrush x:Key="btnColor" Color="DarkSlateBlue"/>
-    
+
     <SolidColorBrush x:Key="PosButtonBackgroundColor" Color="ForestGreen"/>
+    
+    <SolidColorBrush x:Key="PosButtonCatBackgroundColor" Color="Brown"/>
 
     <SolidColorBrush x:Key="ButtonBackBackgroundColor" Color="DarkRed"/>
     
@@ -16,8 +18,11 @@
     <SolidColorBrush x:Key="faColor" Color="White"/>
 
     <SolidColorBrush x:Key="ButtonCalculatorBackgroundColor" Color="CornflowerBlue"/>
+    
+    <SolidColorBrush x:Key="ButtonSaveBackgroundColor" Color="DarkOliveGreen"/>
 
     <SolidColorBrush x:Key="ButtonCalculatorFontColor" Color="White"/>
+    
 
     <SolidColorBrush x:Key="TextBoxFontColor" Color="CornflowerBlue"/>
 

@@ -8,7 +8,7 @@ namespace Yakout.Models
 {
     public class UsersStore 
     {
-        public int id { get; }
+        public int id { get; set; }
 
         private string _UserName;
         public string UserName

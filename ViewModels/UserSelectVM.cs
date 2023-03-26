@@ -102,6 +102,7 @@ namespace Yakout.ViewModels
         {
             if (Selected_User!=null)
             {
+             _selectedUserStore.SelectedUser.id =Convert.ToInt32( Selected_User[0].ToString());
             _selectedUserStore.SelectedUser.UserName = Selected_User[1].ToString();
             _selectedUserStore.SelectedUser.Password = Selected_User[2].ToString();
             _selectedUserStore.SelectedUser.FullName = Selected_User[3].ToString();
@@ -120,6 +121,7 @@ namespace Yakout.ViewModels
 
         private void _selectedUserStore_SelectedUserChanged()
         {
+            OnPropertyChanged(nameof(_selectedUserStore.SelectedUser.id));
             OnPropertyChanged(nameof(_selectedUserStore.SelectedUser. UserName));
             OnPropertyChanged(nameof(_selectedUserStore.SelectedUser.Password));
             OnPropertyChanged(nameof(_selectedUserStore.SelectedUser.FullName));

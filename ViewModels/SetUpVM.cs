@@ -36,7 +36,41 @@ namespace Yakout.ViewModels
         {
             _navigationStore = navigationStore;
 
-            NavigateUsersCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore)));
+            DataTable table = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Users where id=" + 1 + "", connection))
+                {
+                    table = new DataTable();
+                    adapter.Fill(table);
+                    if (table.Rows.Count > 0)
+                    {
+                        _selectedUserStore.SelectedUser.id = 1;
+                        _selectedUserStore.SelectedUser.UserName = table.Rows[0][1].ToString();
+                        _selectedUserStore.SelectedUser.Password = table.Rows[0][2].ToString();
+                        _selectedUserStore.SelectedUser.FullName = table.Rows[0][3].ToString();
+                        _selectedUserStore.SelectedUser.JobDes = table.Rows[0][4].ToString();
+                        _selectedUserStore.SelectedUser.Email = table.Rows[0][5].ToString();
+                        _selectedUserStore.SelectedUser.Phone = table.Rows[0][6].ToString();
+
+                    }
+                    else
+                    {
+                        _selectedUserStore.SelectedUser.id = 0;
+                        _selectedUserStore.SelectedUser.UserName = "";
+                        _selectedUserStore.SelectedUser.Password = "";
+                        _selectedUserStore.SelectedUser.FullName = "";
+                        _selectedUserStore.SelectedUser.JobDes = "";
+                        _selectedUserStore.SelectedUser.Email = "";
+                        _selectedUserStore.SelectedUser.Phone = "";
+                    }
+
+                }
+            }
+
+
+            NavigateUsersCommand = new NavigateCommand<UsersVM>(new NavigationService<UsersVM>(navigationStore, () => new UsersVM(_navigationStore,_selectedUserStore)));
 
             NavigateMainBackGroundCommand = new NavigateCommand<MainBackGroundVM>(new NavigationService<MainBackGroundVM>(navigationStore, () => new MainBackGroundVM()));
 
