@@ -10,72 +10,61 @@
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition/>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Label Content="Restaurant Name" Style="{StaticResource  labelStyle}" Grid.Row="0"/>
-        <Label Content="Restaurant Address" Style="{StaticResource labelStyle}" Grid.Row="1"/>
-        <Label Content="Restaurant Phone" Style="{StaticResource labelStyle}" Grid.Row="2"/>
-        <Label Content="Printer" Style="{StaticResource labelStyle}" Grid.Row="3"/>
-        <Label Content="Receipt Line 1" Style="{StaticResource labelStyle}" Grid.Row="4"/>
-        <Label Content="Receipt Line 2" Style="{StaticResource labelStyle}" Grid.Row="5"/>
-
-        <Border Grid.Column="1" Grid.Row="0">
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Restaurant Name" Style="{StaticResource  labelStyle}" Grid.Row="0"/>
+            <Label Content="Restaurant Address" Style="{StaticResource labelStyle}" Grid.Row="1"/>
+            <Label Content="Restaurant Phone" Style="{StaticResource labelStyle}" Grid.Row="2"/>
+            <Label Content="Printer" Style="{StaticResource labelStyle}" Grid.Row="3"/>
+            <Label Content="Receipt Line 1" Style="{StaticResource labelStyle}" Grid.Row="4"/>
+            <Label Content="Receipt Line 2" Style="{StaticResource labelStyle}" Grid.Row="5"/>
+            <TextBox  Style="{StaticResource  textboxStyle}" Grid.Column="1" Grid.Row="0" Text="{Binding RestaurantName}"/>
+            <TextBox  Style="{StaticResource  textboxStyle}"  Grid.Column="1" Grid.Row="1"  Text="{Binding RestaurantAddress}"/>
+            <TextBox  Style="{StaticResource  textboxStyle}"  Grid.Column="1" Grid.Row="2"  Text="{Binding RestaurantPhone}"/>
+            <TextBox  Style="{StaticResource  textboxStyle}"  Grid.Column="1" Grid.Row="3"  Text="{Binding Printer}"/>
+            <TextBox  Style="{StaticResource  textboxStyle}"  Grid.Column="1" Grid.Row="4"  Text="{Binding RLine1}"/>
+            <TextBox  Style="{StaticResource  textboxStyle}"  Grid.Column="1" Grid.Row="5"  Text="{Binding RLine2}"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Name="tx1"  Style="{StaticResource  textboxStyle}" />
+                <Button Grid.Column="1" Style="{StaticResource ButtonBack}" Command="{Binding btnBackCommand}"/>
+                <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" Width="75" Height="75" 
+                        HorizontalAlignment="Left" Margin="10"
+                        Command="{Binding btnSaveCommand}">
+                    <StackPanel>
+                        <fa:ImageAwesome Icon="Save" Style="{StaticResource faPagesBack}" />
+                        <TextBlock Text="Save" Style="{StaticResource tbPagesBack}"/>
+                    </StackPanel>
+                </Button>
             </Grid>
-        </Border>
-        <StackPanel>
-            
-        </StackPanel>
-        <Grid Grid.Column="1" Grid.Row="1">
-            <TextBox   Name="tx2"  Style="{StaticResource  textboxStyle}"  />
+            <Image Grid.Row="1"  x:Name="img" Stretch="Fill" Margin="100 50" Source="{Binding bitmapSource}"/>
+            <TextBox Grid.Row="2" IsReadOnly="True" Margin="10" Style="{StaticResource TextBoxReadOnlyStyle}"
+                     Text="{Binding ImagePath}"/>
+            <Button Grid.Row="3"  Width="220" Height="75" Content="Select Image" Style="{StaticResource ButtonStyle}"
+                    Command="{Binding btnSelectCommand}" />
         </Grid>
-        <Grid Grid.Column="1" Grid.Row="2">
-            <TextBox  Name="tx3"   Style="{StaticResource textboxStyle}" />
-        </Grid>
-        <Grid Grid.Column="1" Grid.Row="3">
-            <TextBox  Name="tx4" Style="{StaticResource textboxStyle}" />
-        </Grid>
-        <Grid Grid.Column="1" Grid.Row="4">
-            <TextBox  Name="tx5" Style="{StaticResource textboxStyle}" />
-        </Grid>
-        <Grid Grid.Column="1" Grid.Row="5">
-            <TextBox  Name="tx6"  Style="{StaticResource textboxStyle}" />
-        </Grid>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.RowSpan="3" Grid.Row="6">
-            <Button  x:Name="btnSave" Click="btnSave_Click" Style="{StaticResource ButtonBack}" >
-                <StackPanel>
-                    <fa:ImageAwesome Icon="Save" Style="{StaticResource faPagesBack}" />
-                    <TextBlock Text="Save" Style="{StaticResource tbPagesBack}"/>
-                </StackPanel>
-            </Button>
-            <Button  x:Name="btnBack" Click="btnBack4_Click" Style="{StaticResource ButtonBack}" 
-                                 Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.MainBackGroundCommand}">
-            </Button>
-        </StackPanel>
-        <Border Grid.Column="2" Grid.ColumnSpan="2" CornerRadius="10" Grid.Row="0" Grid.RowSpan="4" Background="White" Width="175" Height="175" Margin="0 10 10 0">
-            <Image  x:Name="img" Stretch="Fill"/>
-        </Border>
-        <!--<Button Grid.Column="2" Name="btnSelect" Click="btnSelect_Click" Grid.Row="5" Grid.ColumnSpan="2" Width="220" Margin="10" Content="Select Image" Style="{StaticResource btnMainMenu}" >
-
-        </Button>-->
-        <TextBox x:Name="tx7" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" IsReadOnly="True" Margin="10"/>
     </Grid>
 </UserControl>

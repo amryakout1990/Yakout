@@ -222,5 +222,19 @@
         </Setter>
     </Style>
 
+    <!--<DataGrid Grid.Row="2" Margin="10" Style="{StaticResource GridStyle}">
+        <DataGrid.Columns>
+            <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                <DataGridTemplateColumn.Header>
+                    <TextBlock Text="% Of Correctness"/>
+                </DataGridTemplateColumn.Header>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn>
+                <DataGridTemplateColumn.Header  HeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    <TextBlock Text="Pin Color"/>
+                </DataGridTemplateColumn.Header>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+    </DataGrid>-->
 
 </ResourceDictionary>

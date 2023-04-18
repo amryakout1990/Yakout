@@ -10,14 +10,16 @@
         xmlns:viewmodels="clr-namespace:Yakout.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:SetUpVM}"
         mc:Ignorable="d"
-        Title="MainWindow" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" >
+        Title="MainWindow" Background="Transparent" AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" 
+        Width="1500" Height="800" SnapsToDevicePixels="True">
     <!--<Window.DataContext>
         <vm:NavigationVM></vm:NavigationVM>
     </Window.DataContext>-->
     <!--<Window.Resources>
         <local:Users DataContext="{Binding UsersVM}"/>
     </Window.Resources>-->
-    <Border  BorderThickness="2" BorderBrush="BlueViolet" Background="White">
+    <Border  BorderThickness="2" BorderBrush="BlueViolet" Background="White" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -52,7 +54,7 @@
                             <RadioButton 
                                 Style="{StaticResource btnMainMenu}" 
                                 Name="btnReports" 
-                                Command="{Binding NavigateUsersSelectCommand}">
+                                Command="{Binding ReportsCommand}">
                                 <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
                                     <fa:ImageAwesome Icon="PencilSquare" Style="{StaticResource faMainMenu}"/>
                                     <TextBlock Text="Reports" Style="{StaticResource tbMainMenu}"/>
@@ -61,7 +63,7 @@
                             <RadioButton 
                                 Style="{StaticResource btnMainMenu}" 
                                 Name="btnOptions"
-                                Command="{Binding NavigateMainBackGroundCommand}" >
+                                Command="{Binding OptionsCommand}" >
                                 <StackPanel Style="{StaticResource stack}" Orientation="Horizontal">
                                     <fa:ImageAwesome Icon="HandPaperOutline" Style="{StaticResource faMainMenu}"/>
                                     <TextBlock Text="Options" Style="{StaticResource tbMainMenu}"/>

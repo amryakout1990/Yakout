@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yakout", "Yakout.csproj", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{F014A8A7-57AE-48BF-A252-3BFF3FAF9482}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportDemo", "..\ReportDemo\ReportDemo.csproj", "{1567A6DD-A7E9-491C-85A9-84CCA659AB12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F014A8A7-57AE-48BF-A252-3BFF3FAF9482}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F014A8A7-57AE-48BF-A252-3BFF3FAF9482}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F014A8A7-57AE-48BF-A252-3BFF3FAF9482}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1567A6DD-A7E9-491C-85A9-84CCA659AB12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1567A6DD-A7E9-491C-85A9-84CCA659AB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1567A6DD-A7E9-491C-85A9-84CCA659AB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1567A6DD-A7E9-491C-85A9-84CCA659AB12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

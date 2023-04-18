@@ -10,6 +10,18 @@ namespace Yakout.ViewModels
 {
     class MainBackGroundVM : Utilities.ViewModelBase
     {
+        //private PrintInvoiceVM _printInvo;
 
+        //public PrintInvoiceVM PrintInvo
+        //{
+        //    get { return _printInvo; }
+        //    set { _printInvo = value; OnPropertyChanged(); }
+        //}
+
+        //public MainBackGroundVM()
+        //{
+        //    PrintInvo = new PrintInvoiceVM();
+
+        //}
     }
 }

@@ -14,10 +14,12 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using Yakout.Archives;
 using Yakout.Commands;
 using Yakout.Models;
 using Yakout.Stores;
 using Yakout.Utilities;
+using Yakout.Views;
 
 namespace Yakout.ViewModels
 {
@@ -65,11 +67,11 @@ namespace Yakout.ViewModels
         public ICommand ShowCalculatorCommand { get; private set; }
         public ICommand HideCalculatorCommand { get; private set; }
 
-        private string _paymentId;
-        public string PaymentId
+        private string _PaymentIndex;
+        public string PaymentIndex
         {
-            get { return _paymentId; }
-            set { _paymentId = value; OnPropertyChanged(); }
+            get { return _PaymentIndex; }
+            set { _PaymentIndex = value; OnPropertyChanged(); }
         }
 
 
@@ -209,8 +211,14 @@ namespace Yakout.ViewModels
                 OnPropertyChanged(nameof( Paied)); 
             }
         }
-        private LocalReport _Report;
-        private ReportViewer _reportviewer;
+
+        private string _cxItem;
+
+        public string cxItem
+        {
+            get { return _cxItem; }
+            set { _cxItem = value; OnPropertyChanged(); }
+        }
 
 
         private int id;
@@ -230,9 +238,11 @@ namespace Yakout.ViewModels
         }
         private void SaveWithPrint()
         {
+            ShowSave = false;
             using (SqlConnection connection = new SqlConnection(Models.connectionString.cs))
             {
                 connection.Open();
+
                 using (SqlCommand command1 = new SqlCommand("", connection))
                 {
                     command1.CommandText = "select max(InvoiceId) from Invoice";
@@ -248,57 +258,42 @@ namespace Yakout.ViewModels
                         id = 1;
                     }
 
-                    using (SqlCommand command = new SqlCommand("", connection))
+                    if (GridBoundDataTable.Rows.Count > 0)
                     {
-                        command.CommandText = "Insert Into Invoice Values(@1,@2,@3)";
-                        command.Parameters.Add("@1", SqlDbType.Int).Value = id;
-                        command.Parameters.Add("@2", SqlDbType.NVarChar).Value = Total;
-                        command.Parameters.Add("@3", SqlDbType.NVarChar).Value = PaymentId;
-                        command.ExecuteNonQuery();
-                        foreach (DataRow row in GridBoundDataTable.Rows)
+                        using (SqlCommand command = new SqlCommand("", connection))
                         {
-                            using (SqlCommand command2 = new SqlCommand("", connection))
+                            command.CommandText = "Insert Into Invoice Values(@1,@2,@3)";
+                            command.Parameters.Add("@1", SqlDbType.Int).Value = id;
+                            command.Parameters.Add("@2", SqlDbType.NVarChar).Value = Total;
+                            command.Parameters.Add("@3", SqlDbType.NVarChar).Value = cxItem;
+                            command.ExecuteNonQuery();
+                            foreach (DataRow row in GridBoundDataTable.Rows)
                             {
-                                command2.CommandText = "Insert Into InvoiceDetails Values(@1,@2,@3,@4,@5,@6)";
-                                command2.Parameters.Add("@1", SqlDbType.Int).Value = id;
-                                command2.Parameters.Add("@2", SqlDbType.NVarChar).Value = row[0].ToString();
-                                command2.Parameters.Add("@3", SqlDbType.NVarChar).Value = row[1].ToString();
-                                command2.Parameters.Add("@4", SqlDbType.NVarChar).Value = row[2].ToString();
-                                command2.Parameters.Add("@5", SqlDbType.NVarChar).Value = row[3].ToString();
-                                command2.Parameters.Add("@6", SqlDbType.NVarChar).Value = row[4].ToString();
-                                command2.ExecuteNonQuery();
+                                using (SqlCommand command2 = new SqlCommand("", connection))
+                                {
+                                    command2.CommandText = "Insert Into InvoiceDetails Values(@1,@2,@3,@4,@5,@6)";
+                                    command2.Parameters.Add("@1", SqlDbType.Int).Value = id;
+                                    command2.Parameters.Add("@2", SqlDbType.NVarChar).Value = row[0].ToString();
+                                    command2.Parameters.Add("@3", SqlDbType.NVarChar).Value = row[1].ToString();
+                                    command2.Parameters.Add("@4", SqlDbType.NVarChar).Value = row[2].ToString();
+                                    command2.Parameters.Add("@5", SqlDbType.NVarChar).Value = row[3].ToString();
+                                    command2.Parameters.Add("@6", SqlDbType.NVarChar).Value = row[4].ToString();
+                                    command2.ExecuteNonQuery();
+                                }
+
                             }
+                            ShowSave = false;
+                            ClearAll();
 
+                            //////////
+                            Window1 www = new Window1(id);
+                            www.ShowDialog();
                         }
-                        ShowSave = false;
-                        ClearAll();
-
-                        ////////////
-                        ShowPrint = true;
-                        using (SqlCommand command3 = new SqlCommand("", connection))
-                        {
-                            DataSet ds = new DataSet();
-                            ds.Tables.Add("t1");
-                            command3.CommandType = CommandType.StoredProcedure;
-                            command3.CommandText = "Invoice_Details";
-                            command3.Parameters.Clear();
-                            command3.Parameters.Add("@InvoiceId", SqlDbType.Int).Value = 2;
-                            ds.Tables["t1"].Load(command3.ExecuteReader());
-                            MessageBox.Show(ds.Tables["t1"].Rows[4][4]+"");
-                            //_reportviewer.LocalReport.DataSources.Clear();
-                            //var rpds_model = new ReportDataSource() { Name = "DataSet1", Value = ds.Tables[0] };
-                            //_reportviewer.LocalReport.DataSources.Add(rpds_model);
-                            //_reportviewer.LocalReport.EnableExternalImages = true;
-                            //_reportviewer.SetDisplayMode(DisplayMode.PrintLayout);
-                            //_reportviewer.Refresh();
-                            //_reportviewer.RefreshReport();
-
-                        }
-
 
                     }
 
-}
+
+                }
 
             }
         }
@@ -328,7 +323,7 @@ namespace Yakout.ViewModels
                         command.CommandText = "Insert Into Invoice Values(@1,@2,@3)";
                         command.Parameters.Add("@1", SqlDbType.Int).Value = id;
                         command.Parameters.Add("@2", SqlDbType.NVarChar).Value = Total;
-                        command.Parameters.Add("@3", SqlDbType.NVarChar).Value = PaymentId;
+                        command.Parameters.Add("@3", SqlDbType.NVarChar).Value = PaymentIndex;
                         command.ExecuteNonQuery();
                         foreach (DataRow row in GridBoundDataTable.Rows)
                         {
@@ -563,7 +558,7 @@ namespace Yakout.ViewModels
             Total = "0";
             Paied = "0";
             Change = "0";
-            PaymentId = "0";
+            PaymentIndex = "0";
             GridIndex = -1;
         }
 

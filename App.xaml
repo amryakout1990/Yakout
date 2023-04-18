@@ -20,6 +20,7 @@
                     <ResourceDictionary Source="/Styles/StylesUserControl.xaml"/>
                 <ResourceDictionary Source="/Styles/StylesColor.xaml"/>
                 <ResourceDictionary Source="/Styles/StylesPanel.xaml"/>
+                <ResourceDictionary Source="Simple Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
 

@@ -26,16 +26,13 @@ namespace Yakout.ViewModels
         private readonly SelectedItemStore _selectedItemStore;
 
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
-
         public ICommand NavigateUsersCommand { get; }
-
         public ICommand NavigateSetUPCommand { get; }
-
         public ICommand NavigatePosCommand { get; }
-
+        public ICommand ReportsCommand { get; private set; }
         public ICommand NavigateMainBackGroundCommand { get; }
-
         public ICommand NavigateUsersAfterSelectionCommand { get; }
+        public ICommand OptionsCommand { get; private set; }
 
         public MainVM(NavigationStore navigationStore)
         {
@@ -57,12 +54,23 @@ namespace Yakout.ViewModels
 
             ///تم الاستغناء عن الطرق القديمة لعمل command 
             ///كل واحد لحالة
+            ReportsCommand = new ActionCommand(reports);
+            OptionsCommand = new ActionCommand(option);
+        }
 
+        private void option()
+        {
+            _navigationStore.CurrentViewModel = new OptionsVM(_navigationStore);
         }
 
         private void _navigationStore_CurrentViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
         }
+        private void reports()
+        {
+            _navigationStore.CurrentViewModel=new PrintInvoiceVM();
+        }
+
     }
 }

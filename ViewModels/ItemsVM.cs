@@ -160,11 +160,9 @@ namespace Yakout.ViewModels
             }
             set { _imageToByteArray = value; OnPropertyChanged(); }
         }
-
-        private BitmapSource _bitmapSource;
-
         private SelectedItemStore _selectedItemStore;
 
+        private BitmapSource _bitmapSource;
         public BitmapSource bitmapSource
         {
             get { return _bitmapSource; }

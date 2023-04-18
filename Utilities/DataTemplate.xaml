@@ -57,7 +57,7 @@
         <view:ButtonItems/>
     </DataTemplate>
 
-    <!--<DataTemplate DataType="{x:Type vm:CalculatorVM}">
-        <view:Calculator/>
-    </DataTemplate>-->
+    <DataTemplate DataType="{x:Type vm:PrintInvoiceVM}">
+        <view:PrintInvoice/>
+    </DataTemplate>
 </ResourceDictionary>

@@ -2,6 +2,55 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
+    
+    
+    <!--<Grid  >
+        <Ellipse  HorizontalAlignment="Left" Height="150" Stroke="Black" VerticalAlignment="Top" Width="175"/>
+        <Rectangle x:Name="rectangle" HorizontalAlignment="Left" Height="60" Margin="85 15 0 0" Stroke="Black" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+    </Grid>-->
+
+
+    <!--<UserControl.Resources>
+        <Storyboard x:Key="Storyboard1">
+            <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="rectangle">
+                <EasingPointKeyFrame KeyTime="0" Value="0.5,1"/>
+            </PointAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="88.046"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="178.884"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="267.794"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="359.269"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="446.013"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="178.884"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="267.794"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="359.269"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="446.013"/>
+
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>-->
+
+
+
+
+    <!--<Popup x:Name="popup_uc"
+                   AllowsTransparency="True"
+                   HorizontalOffset="10"
+                   VerticalOffset="10">
+        <local:PopupSearch x:Name="Header" Width="200" Height="200"/>
+    </Popup>-->
+
+
     <!--<StackPanel>
         <ItemsControl ItemsSource="{Binding SourceCollection}">
             <ItemsControl.ItemTemplate>
@@ -17,7 +66,60 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
     </StackPanel>-->
-    
-    
+
+    <!--<Path.Fill>
+        <RadialGradientBrush GradientOrigin="0.508,0.529">
+            <GradientStop Color="Black" Offset="0.324"/>
+            <GradientStop Color="White" Offset="0.729"/>
+            <GradientStop Color="Black" Offset="0.244"/>
+            <GradientStop Color="#FF959595" Offset="0.278"/>
+            <GradientStop Color="#FFEB7004" Offset="0.799"/>
+        </RadialGradientBrush>
+    </Path.Fill>-->
+
+    <!--<Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+    </Grid.RowDefinitions>-->
 
 </ResourceDictionary>

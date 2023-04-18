@@ -7,13 +7,41 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource user}" Background="Beige">
     <Grid>
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding SourceCollection}" >
+        <Path Data="M345,160" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="345,160,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Path Data="M500,175 L239.5,175 229.5,289.5 C229.5,289.5 419.5,234.5 459.5,329.5 499.5,424.5 689.5,359.5 694.5,354.5 699.5,349.5 729.5,209.50004 694.5,134.49995 659.5,59.499867 949.50071,74.499885 659.50043,14.499816 369.50014,-45.500253 480.49965,200.50003 500,175 z" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="376.792" Margin="183.774,-31.792,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="561.226"/>
+        <Path Data="M290,85 L294.5,139.5 379.5,89.5 z" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="55.5" Margin="290,85,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="90.5"/>
+        <Path Data="M109.06489,152.8626 C118.68501,144.20448 126.92224,136.18852 138.26336,128.81679 172.03632,106.86437 199.58755,97.59834 239.59924,87.59542 264.36885,81.403017 276.60913,67.925925 297.99618,89.312977 324.50866,115.82545 318.60687,127.02905 318.60687,168.32061 318.60687,207.26339 309.6768,229.55061 272.23282,257.63359 238.34269,283.05119 213.97783,276.52672 169.17939,276.52672 135.10272,276.52672 119.21209,289.4765 109.06489,238.74046 101.42169,200.5245 112.0327,188.59744&#xD;&#xA;127.95802,152.8626" HorizontalAlignment="Left" Height="201.323" Margin="106.53,77.683,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="213.637">
+            <Path.Fill>
+                <RadialGradientBrush GradientOrigin="0.508,0.529">
+                    <GradientStop Color="Black" Offset="0.324"/>
+                    <GradientStop Color="White" Offset="0.729"/>
+                    <GradientStop Color="Black" Offset="0.244"/>
+                    <GradientStop Color="#FF959595" Offset="0.278"/>
+                    <GradientStop Color="#FFEB7004" Offset="0.799"/>
+                </RadialGradientBrush>
+            </Path.Fill>
+        </Path>
+        <Path Data="M80,55" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="80,55,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="1"/>
+        <Button HorizontalAlignment="Left" Margin="80,330,0,0" VerticalAlignment="Top" Width="265" Height="80">
+            <Button Content="Button" Margin="0" Style="{DynamicResource btnCircle}" Width="75"/>
+        </Button>
+        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Style="{DynamicResource PosButtonStyle}" VerticalAlignment="Top"/>
+        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Style="{DynamicResource PosButtonStyle}" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="495,410,0,0" Style="{DynamicResource SimpleButton}" VerticalAlignment="Top" Width="75"/>
+        <StackPanel Margin="40,315,345,40" Orientation="Horizontal">
+            <Button Content="Button" HorizontalAlignment="Left" Height="66.831" Style="{DynamicResource ButtonStyle}" VerticalAlignment="Top" Width="280.167"/>
+            <Button Content="Button" HorizontalAlignment="Left" Height="65" Margin="0,30,0,0" Style="{DynamicResource ButtonStyle}" VerticalAlignment="Top" Width="40"/>
+        </StackPanel>
+        <Button Content="Button" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyle}" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="35" Margin="-360,585,0,-170" Style="{DynamicResource btnCircle}" VerticalAlignment="Top" Width="250"/>
+
+        <!--<ItemsControl Grid.Column="1" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Width="600"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        </ItemsControl>-->
         <!--<TextBlock Text="{Binding ttt}"/>-->
     </Grid>
 </UserControl>

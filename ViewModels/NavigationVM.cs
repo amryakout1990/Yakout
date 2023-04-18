@@ -81,24 +81,24 @@ namespace Yakout.ViewModels
 
         ///options page /////
 
-        private void Options(object obj) => CurrentView = new OptionsVM();
+        //private void Options(object obj) => CurrentView = new OptionsVM();
 
-        private ICommand _OptionsCommand;
+        //private ICommand _OptionsCommand;
 
-        public ICommand OptionsCommand
-        {
-            get
-            {
-                if (_OptionsCommand == null)
-                {
-                    _OptionsCommand = new RelayCommand(Options);
-                }
-                return _OptionsCommand;
-            }
-            set { _OptionsCommand = value; OnPropertyChanged(); }
-        }
+        //public ICommand OptionsCommand
+        //{
+        //    get
+        //    {
+        //        if (_OptionsCommand == null)
+        //        {
+        //            _OptionsCommand = new RelayCommand(Options);
+        //        }
+        //        return _OptionsCommand;
+        //    }
+        //    set { _OptionsCommand = value; OnPropertyChanged(); }
+        //}
 
-        ///SetUp page /////
+        /////SetUp page /////
 
         //private void SetUp(object obj) => CurrentView = new SetUpVM();
 

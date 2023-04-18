@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:rdlcreport="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
+             xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
              xmlns:local="clr-namespace:Yakout.Utilities" 
              xmlns:views="clr-namespace:Yakout.Views"
              mc:Ignorable="d" 
@@ -18,6 +18,7 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <Grid Margin="250 150 250 150">
             <Grid.Style>
                 <Style TargetType="Grid">
@@ -39,6 +40,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
                 <Button Grid.Column="0" Content="Save With Print" Style="{StaticResource ButtonSaveStyle}"
                         Command="{Binding SaveWithPrintCommand}"/>
                 <Button Grid.Column="1" Content="Save Without Print" Style="{StaticResource ButtonSaveStyle}"
@@ -47,7 +49,7 @@
             <Button Grid.Row="1" Content="Cancel" Background="DarkRed" Style="{StaticResource ButtonSaveStyle}"
                     Command="{Binding CancelCommand}"/>
         </Grid>
-        <Grid Margin="250 150 250 150">
+        <!--<Grid Margin="100">
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -59,10 +61,8 @@
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
-            <WindowsFormsHost>
-                <rdlcreport:ReportViewer x:Name="_reportviewer" />
-            </WindowsFormsHost>
-        </Grid>
+            <views:PrintInvoice DataContext="{Binding PrintInvo}"/>
+        </Grid>-->
         <!--Microsoft.ReportViewer.common-->
         <!--Microsoft.ReportViewer.Winforms-->
         <!--WindowFormsIntegration-->
@@ -226,7 +226,7 @@
 
                 <Label Grid.Row="2" Grid.Column="0" Content="Payment" Style="{StaticResource labelStyle}" />
                 <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Tablepay}"
-                          SelectedValuePath="Id" DisplayMemberPath="Name" SelectedIndex="{Binding PaymentId}"/>
+                          SelectedValuePath="Id" DisplayMemberPath="Name" SelectedValue="{Binding cxItem}" SelectedIndex="{Binding PaymentIndex}"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="UnPaied" Style="{StaticResource labelStyle}"/>
                 <Label Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" 
                        Content="{Binding Change}" Background="White" FontSize="25" />

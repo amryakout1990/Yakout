@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Yakout.Models;
 using Yakout.Stores;
@@ -55,5 +56,13 @@ namespace Yakout
             Application.Current.Shutdown();
         }
 
+        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+
+        }
     }
 }

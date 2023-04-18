@@ -28,7 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -137,6 +137,9 @@
     <Compile Include="Archives\TestUserControl.xaml.cs">
       <DependentUpon>TestUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Commands\NavigateUsersAfterSelectionCommand.cs" />
     <Compile Include="Commands\NavigateUsersAfterSelectionCommandMethod.cs" />
@@ -178,6 +181,7 @@
     <Compile Include="ViewModels\PaymentsVM.cs" />
     <Compile Include="ViewModels\PosButtonsVM.cs" />
     <Compile Include="ViewModels\PosVM.cs" />
+    <Compile Include="ViewModels\PrintInvoiceVM.cs" />
     <Compile Include="ViewModels\ReportsVM.cs" />
     <Compile Include="ViewModels\SetUpVM.cs" />
     <Compile Include="ViewModels\tVM.cs" />
@@ -220,6 +224,9 @@
     <Compile Include="Views\PosButtons.xaml.cs">
       <DependentUpon>PosButtons.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PrintInvoice.xaml.cs">
+      <DependentUpon>PrintInvoice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reports.xaml.cs">
       <DependentUpon>Reports.xaml</DependentUpon>
     </Compile>
@@ -240,11 +247,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>YakoutPOSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="YakoutPOSDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YakoutPOSDataSet1.xsd</DependentUpon>
+    </Compile>
     <Page Include="Archives\Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Archives\TestUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reports\Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -260,6 +276,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Simple Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StylesButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -356,6 +375,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PrintInvoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Reports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -412,6 +435,17 @@
     </None>
     <None Include="YakoutPOSDataSet.xss">
       <DependentUpon>YakoutPOSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="YakoutPOSDataSet1.xsc">
+      <DependentUpon>YakoutPOSDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="YakoutPOSDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>YakoutPOSDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="YakoutPOSDataSet1.xss">
+      <DependentUpon>YakoutPOSDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Yakout_TemporaryKey.pfx" />
   </ItemGroup>
